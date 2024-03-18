@@ -26,6 +26,8 @@ import {
   DEPLOYMENT_LOGIC_ID,
   GQL_API_NAME,
   HOSTING_BUCKET_NAME,
+  USER_PAYMENT_DETAILS_TABLE_NAME,
+  USER_PROFILES_TABLE_NAME,
   USER_TRANSACTIONS_TABLE_NAME,
   USER_WALLETS_TABLE_NAME,
 } from "./static/constants";
@@ -856,6 +858,19 @@ export class CoreStack extends cdk.Stack {
     gqlApi.addDynamoDbDataSource(
       "userWalletsTable",
       Table.fromTableName(this, "userWalletsTable", USER_WALLETS_TABLE_NAME),
+    );
+
+    gqlApi.addDynamoDbDataSource(
+      "userProfile",
+      Table.fromTableName(this, "userProfileTable", USER_PROFILES_TABLE_NAME),
+    );
+    gqlApi.addDynamoDbDataSource(
+      "userPaymentDetails",
+      Table.fromTableName(
+        this,
+        "userPaymentDetailsTable",
+        USER_PAYMENT_DETAILS_TABLE_NAME,
+      ),
     );
 
     const hostingBucket = new Bucket(this, "hostingBucket", {
