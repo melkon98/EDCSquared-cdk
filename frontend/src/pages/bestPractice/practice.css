@@ -1,0 +1,11 @@
+.best-practice-table {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+/* ------------ Admin Best practice panel ------------- */
+
+.admin-best-practice-table-panel {
+  max-width: 695px;
+}

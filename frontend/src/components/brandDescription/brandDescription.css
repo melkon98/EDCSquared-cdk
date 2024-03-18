@@ -1,0 +1,103 @@
+.brand-brief-details-container {
+  box-sizing: border-box;
+  width: 100%;
+  height: 336px;
+  left: calc(50% - 841px / 2 - 53.5px);
+  top: 195px;
+  background: #ffffff;
+  border: 1px solid #9fd0bd;
+  border-radius: 6px;
+  padding: 15px;
+  overflow: auto;
+}
+
+.brand-brief-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 18px;
+  color: #1c1c1c;
+}
+
+.brand-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.brand-sub-description {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1c1c1c;
+}
+
+.brand-sub-description-margin {
+  margin: 0px 0px 15px 0px;
+}
+
+.link-creative-btn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  cursor: pointer;
+  gap: 16px;
+}
+
+.link-creative-btn {
+  width: 120px;
+  height: 34px;
+  border-radius: 6px;
+  background: #ffffff;
+  border: 1px solid #9fd0bd;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-creative-text {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.02em;
+  color: #005f73;
+}
+
+.inspiration-panel {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4;
+  background: rgb(0 0 0 / 47%);
+  pointer-events: none;
+  user-select: none;
+}
+
+.brand-brief-info-panel {
+  min-height: 250px;
+}
+
+@media only screen and (max-width: 768px) {
+  .brand-brief-details-container {
+    padding: 15px 15px 40px;
+  }
+
+  .brand-brief-info-panel {
+    min-height: 225px;
+  }
+}

@@ -1,0 +1,78 @@
+.payment-window {
+    background: #fff;
+    border-radius: 10px;
+    min-height: 450px;
+}
+
+.loader-content{
+  height: calc(100vh - 592px - 2rem)!important;
+}
+
+.status-select{
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 4px 34px 4px 10px;
+  width: 180px;
+}
+
+.status-select:focus {
+  border-color: transparent !important;
+  --tw-ring-color: #000000 !important;
+}
+
+.page-title{
+    font-family: 'Raleway';
+    font-style: normal;
+    line-height: 20px;
+    color: #0a9396;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 8px;
+    padding-left: 10px !important;
+}
+
+.admin-dashboard-table-header-label {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  color: #94d2bd;
+  font-size: 12px;
+  padding: 10px;
+  width: auto;
+}
+
+.admin-dashboard-table-description {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1c1c1c;
+  width: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.payment-window-table tbody tr td {
+  padding: 10px;
+}
+
+.csv{
+  background: #fff;
+}
+
+.payment-window-table tr{
+  transition: .3s;
+}
+
+.payment-window-table tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+/* .users-transaction tbody tr:hover{
+  background-color: #e7e7e7;
+} */
+

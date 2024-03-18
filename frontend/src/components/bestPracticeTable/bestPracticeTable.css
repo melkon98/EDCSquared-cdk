@@ -1,0 +1,45 @@
+.brand-table {
+  width: 100%;
+}
+
+.brand-table-header-bottom-border {
+  border-bottom: 1px solid #9fd0bd;
+}
+
+.brand-table-header-label {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #a1a1a1;
+  width: auto;
+  padding: 2px 5px;
+}
+
+.brand-table-description {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1c1c1c;
+  width: auto;
+  padding: 2px 5px;
+}
+
+.best-practice-headline {
+  width: 25%;
+}
+
+.best-practice-description {
+  width: 50%;
+}
+
+.best-practice-status {
+  width: 10%;
+}
+
+.best-practice-icon {
+  width: 7.5%;
+}

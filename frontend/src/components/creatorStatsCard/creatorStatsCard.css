@@ -1,0 +1,122 @@
+.creator-stats-card-container {
+  height: 112px;
+  left: calc(50% - 274.25px / 2 - 336.88px);
+  top: 73px;
+  background: #ffffff;
+  border: 1px solid #9fd0bd;
+  border-radius: 6px;
+  padding: 12px 6px 12px 15px;
+  width: 100%;
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats-label {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  color: #001219;
+}
+
+.stats-count {
+  /* font-family: "Comfortaa"; */
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 36px;
+  text-align: center;
+  color: #1c1c1c;
+  margin: 16px 0px;
+}
+
+img {
+  cursor: pointer;
+}
+
+/* .custom-tooltip {
+  --bs-tooltip-bg: white;
+  --bs-tooltip-color: black;
+  --bs-tooltip-opacity: 1;
+}
+
+.custom-tooltip .tooltip-inner {
+  max-width: 312px;
+  border: 1px solid rgba(202, 103, 2, 0.72);
+  text-align: left;
+  padding: 12px;
+}
+
+.custom-tooltip .tooltip-arrow::before {
+  border-left-color: rgba(202, 103, 2, 0.72);
+  border-right-color: rgba(202, 103, 2, 0.72);
+}
+
+@media only screen and (max-width: 768px) {
+  .custom-tooltip .tooltip-inner {
+    max-width: 175px;
+  }
+} */
+
+
+.custom-tooltip{
+  width: 100% !important;
+  min-width: 250px !important;
+  max-width: 350px !important;
+  background: white !important;
+  height: fit-content !important;
+  border:1px solid orange !important;
+  border-radius: 8px !important;
+  color: black !important;
+  opacity: 1 !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  overflow: visible !important;
+  z-index: 999 !important;
+}
+
+.custom-tooltip.left{
+  margin-left: 1px !important;
+}
+
+.custom-tooltip div {
+ border-right: 1px solid orange !important;
+ border-bottom: 1px solid orange !important;
+}
+
+@media only screen and (max-width: 500px) {
+  .custom-tooltip{
+    max-width: 300px !important;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .custom-tooltip{
+    max-width: 230px !important;
+  }
+}
+
+@media only screen and (max-width: 586px) {
+  .shrink-mobile {
+    width: 80%;
+  }
+  .grow-mobile {
+    height: 90%;
+  }
+}
+
+.discover-btn{
+  border-radius: 4px;
+  background: #1D1C1C;
+  padding: 8px 16px;
+  color: white;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+}

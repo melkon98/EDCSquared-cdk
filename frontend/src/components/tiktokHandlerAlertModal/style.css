@@ -1,0 +1,68 @@
+.tiktok-handler-modal {
+  width: 450px;
+  height: auto;
+  top: calc(50% - 181px / 2);
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12), 0px 20px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  padding: 20px 30px 27px 30px;
+  position: absolute;
+
+  z-index: 1;
+  left: unset;
+  width: 410px;
+}
+
+.tiktok-handler-modal-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  color: #409094;
+}
+
+.tiktok-handler-modal-description {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #041416;
+  text-align: center;
+}
+
+.tiktok-handler-modal-content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.tiktok-handler-btn {
+  background: linear-gradient(180deg, #9fd0bd 0%, #409094 100%);
+  border-radius: 10px;
+  width: 200px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tiktok-handler-btn-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+}
+
+.tiktok-handler-btn-container {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 20px;
+}

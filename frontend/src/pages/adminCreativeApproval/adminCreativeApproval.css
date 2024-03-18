@@ -1,0 +1,48 @@
+.creative-approval {
+  border-radius: 16px;
+  background: #fff;
+  padding: 24px 0;
+}
+
+.page-title {
+  color: #0a9396;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.approval-table-header-label {
+  color: #94d2bd;
+  font-size: 14px;
+  font-style: normal;
+}
+
+.creative-approval tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+.approved-table-item {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(61, 99, 107, 0.58);
+    width: auto;
+    padding: 2px 24px;
+}
+
+.approval-table-header-label{
+    padding: 10px 24px;
+}
+
+.loader-content{
+    height: calc(100vh - 200px);
+}
+
+@media only screen and (max-width: 1453px) {
+  /* .creative-approval{
+    width: 1237px;
+    overflow-x: scroll !important 
+  } */
+}

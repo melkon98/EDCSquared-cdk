@@ -1,0 +1,238 @@
+.create-brief-box {
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  background: #ffffff;
+  border: 1px solid #9fd0bd;
+  border-radius: 6px;
+  padding: 15px 15px 26px 15px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.create-brief-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.create-brief-input-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  color: #031416;
+}
+
+.create-brief-input-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.create-brief-input {
+  padding: 6px 12px;
+  background: #ffffff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06),
+    0px 0px 0px 1px rgba(104, 113, 130, 0.16);
+  border-radius: 6px;
+  border: none;
+  outline: none;
+}
+
+.create-brief-input.select-input {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.create-brief-input.select-input::-ms-expand {
+  display: none;
+}
+
+.create-brief-input.select-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: initial;
+}
+
+.creative-inspiration-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.creative-inspiration-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.create-brief-input::placeholder {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #a1a9b8;
+}
+
+.creator-brief-textarea {
+  padding: 6px 12px;
+  width: 100%;
+  height: 145px;
+  left: 15px;
+  top: 353px;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06),
+    0px 0px 0px 1px rgba(104, 113, 130, 0.16);
+  border-radius: 6px;
+  outline: none;
+  resize: none;
+}
+
+.brief-container {
+  display: flex;
+  gap: 17px;
+  width: 100%;
+}
+
+.create-brief-textarea-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 20px;
+}
+
+.create-brief-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.create-brief-btn {
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #9fd0bd;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 34px;
+  color: #031416;
+  cursor: pointer;
+}
+
+.create-brief-btn:hover {
+  background: #9fd0bd;
+  color: white;
+}
+
+.create-brief-text {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -0.02em;
+}
+
+.input-brief-error {
+  color: red;
+  text-align: right;
+  font-size: 12px;
+}
+
+.create-best-practice-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.create-best-practice-panel .field-practice-headline {
+  min-width: 45%;
+}
+
+.create-best-practice-panel .field-practice-image {
+  min-width: 30%;
+}
+
+.create-best-practice-panel .field-practice-image .field-practice-image-input {
+  display: none;
+}
+
+.create-best-practice-panel .field-practice-status {
+  min-width: 15%;
+}
+
+.best-practice-input-box {
+  background: #ffffff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06),
+    0px 0px 0px 1px rgba(104, 113, 130, 0.16);
+  border-radius: 6px;
+  height: 32px;
+  border: none;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: black;
+}
+
+.best-practice-input-box.isBlurred {
+  color: #a1a9b8;
+}
+
+.best-practice-input-box:hover,
+.best-practice-input-box:focus,
+.best-practice-input-box input:focus-visible {
+  border: none;
+  outline: none;
+  box-shadow: 0px 1px 2px black, 0px 0px 0px 1px black;
+}
+
+.best-practice-editor-wrapper {
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.06),
+    0px 0px 0px 1px rgba(104, 113, 130, 0.16);
+  color: black;
+  border-radius: 6px;
+  border: none;
+  min-height: 480px;
+}
+
+.best-practice-editor {
+  padding: 6px 10px;
+}
+
+.create-best-practice-btn-panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.editor-input-error {
+  font-size: 10px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: red;
+  margin-left: auto;
+  margin-top: -12px;
+}
+
+.create-practice-btn {
+  width: 200px;
+}

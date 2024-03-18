@@ -1,0 +1,51 @@
+.creator-payments-container {
+  min-height: 500px;
+}
+
+.admin-dashboard-table-header-label {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  color: #94d2bd;
+  font-size: 16px;
+  padding: 10px;
+  width: auto;
+}
+
+.admin-dashboard-table-description {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1c1c1c;
+  width: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.users-transaction tbody tr td {
+  padding: 5px 10px;
+}
+
+.csv{
+  background: transparent !important;
+  position: absolute;
+  top: 40px;
+  right: calc(50% - 14px);
+}
+
+.users-transaction tr{
+  transition: .3s;
+}
+
+.users-transaction tr:nth-child(even) {
+  background-color: #f9fbfd;
+}
+
+.users-transaction tbody tr:hover{
+  background-color: #e7e7e7;
+}

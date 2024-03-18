@@ -1,0 +1,9 @@
+.tiktok_error_box {
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(255, 0, 0, 0.6);
+  border: 1px solid red;
+  color: white;
+  text-align: center;
+  font-weight: 600;
+}

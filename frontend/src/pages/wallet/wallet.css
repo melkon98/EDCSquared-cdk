@@ -1,0 +1,19 @@
+.wallet-title {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: #1c1c1c;
+  margin-bottom: 5px;
+}
+
+.wallet-section {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.wallet-section .brand-dashboard__item {
+  height: auto;
+}

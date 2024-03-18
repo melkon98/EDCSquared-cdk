@@ -1,0 +1,64 @@
+.wallet-container {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  height: 206px;
+  background: linear-gradient(
+    112.9deg,
+    #af4b11 -32.81%,
+    #c1620c 20.8%,
+    #dfdb9d 95.1%
+  );
+  border-radius: 16px;
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+.wallet-card-block {
+  background: url('../../../public/images/glass.png');
+  background-size: 100% 100%;
+  padding: 10px 18px;
+  margin-top: auto;
+  position: relative;
+  height: 99px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+}
+
+.wallet-header {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 160%;
+  color: #ffffff;
+}
+
+.wallet-due-date {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 180%;
+  color: #ffffff;
+}
+
+.wallet-cost {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 120%;
+  color: #ffffff;
+  width: max-content;
+  margin-top: auto;
+}
+
+@media screen and (max-width: 1280px) {
+  .wallet-container {
+    height: auto;
+    padding: 18px 22px;
+  }
+}

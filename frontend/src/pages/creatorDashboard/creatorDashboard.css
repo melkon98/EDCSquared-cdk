@@ -1,0 +1,71 @@
+.creator-dashboard-label {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
+  color: #041416;
+}
+
+.stats-container {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+}
+
+.campaign-briefs-dashboard-container {
+  margin: 10px 0px;
+}
+
+.notification-dashboard-container {
+  margin: 10px 0px 30px 0px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.statistics-cards-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .statistics-cards-container {
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    column-gap: 10px;
+    row-gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 525px) {
+  .notification-dashboard-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .creator-dashboard-label {
+    padding-bottom: 10px;
+  }
+}
+
+.creator-dashboard .creator-dashboard__item-block-key{
+  font-size: 15px;
+}
+.creator-dashboard .creator-dashboard__item-block-value{
+  font-size: 16px;
+}
+
+.creator-dashboard__item-block-value{
+  font-family: Inter;
+  font-size: 16px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+}

@@ -1,0 +1,109 @@
+.best-practices-container {
+  box-sizing: border-box;
+  width: 100%;
+  height: 251px;
+  left: calc(50% - 558px / 2 + 374px);
+  top: 514px;
+  background: #ffffff;
+  border: 1px solid #9fd0bd;
+  border-radius: 6px;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.best-practices-description li{
+  list-style-type: disc;
+}
+
+.best-practices-description ol{
+  list-style-type: auto;
+}
+
+.best-practices-description p{
+  color: rgb(20, 20, 20) !important;
+}
+
+.best-practices-description strong{
+  color: black;
+}
+
+.best-practices-wrapper {
+  overflow: auto;
+  height: 219px;
+}
+
+.best-practices-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.best-practices-label {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1c1c1c;
+}
+
+.best-practice-body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: auto;
+  flex-direction: column;
+}
+
+.best-practice-body .best-practice-image-wrapper {
+  width: 100%;
+  margin-top: 6px;
+  display: flex;
+  justify-content: center;
+}
+
+.best-practice-body .best-practice-image-wrapper .best-practice-image {
+  max-width: 450px;
+  max-height: 145px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.best-practice-body .best-practice-image-wrapper .best-practice-image img {
+  max-width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.best-practice-body .best-practice-description {
+  font-family: 'Raleway';
+  margin-top: 5px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
+  color: #1c1c1c;
+}
+
+.best-practices-full {
+  min-height: 88vh;
+}
+
+.best-practices-full-wrapper {
+  height: 84vh;
+}
+
+.rdw-image-modal-upload-option {
+  padding: 15px !important;
+}
+
+.rdw-image-modal-upload-option-label {
+  padding: 0 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  word-break: break-all !important;
+}
