@@ -1,0 +1,100 @@
+import { Stack, StackProps } from "aws-cdk-lib";
+import { MappingTemplate, Resolver } from "aws-cdk-lib/aws-appsync";
+import { Table } from "aws-cdk-lib/aws-dynamodb";
+import { Construct } from "constructs";
+import { GraphqlApiStack } from "./gql-api-stack";
+import { BRAND_BRIEFS_TABLE_NAME } from "./static/constants";
+
+export class BrandBriefsStack extends Stack {
+  constructor(construct: Construct, id: string, props: StackProps) {
+    super(construct, id, props);
+
+    const gqlApi = new GraphqlApiStack(this, "gqlApi").gqlApi;
+    const brandBriefsDS = gqlApi.addDynamoDbDataSource(
+      "brandBriefsTable",
+      Table.fromTableName(this, "brandBriefsTable", BRAND_BRIEFS_TABLE_NAME),
+    );
+
+    try {
+      new Resolver(this, "getBrandBriefResolver", {
+        api: gqlApi,
+        dataSource: brandBriefsDS,
+        typeName: "Query",
+        fieldName: "getBrandBrief",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getBrandBrief.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getBrandBrief.res.vtl",
+        ),
+      });
+
+      new Resolver(this, "listBrandBriefsResolver", {
+        api: gqlApi,
+        dataSource: brandBriefsDS,
+        typeName: "Query",
+        fieldName: "listBrandBriefs",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.listBrandBriefs.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.listBrandBriefs.res.vtl",
+        ),
+      });
+
+      new Resolver(this, "brandBriefsByVerticalResolver", {
+        api: gqlApi,
+        dataSource: brandBriefsDS,
+        typeName: "Query",
+        fieldName: "brandBriefsByVertical",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefsByVertical.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefsByVertical.res.vtl",
+        ),
+      });
+
+      new Resolver(this, "brandBriefsByTiktokAdvertiserIdResolver", {
+        api: gqlApi,
+        dataSource: brandBriefsDS,
+        typeName: "Query",
+        fieldName: "brandBriefsByVertical",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefsByTiktokAdvertiserId.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefsByTiktokAdvertiserId.res.vtl",
+        ),
+      });
+
+      new Resolver(this, "brandBriefsByBrandResolver", {
+        api: gqlApi,
+        dataSource: brandBriefsDS,
+        typeName: "Query",
+        fieldName: "byBrand",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.byBrand.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.byBrand.res.vtl",
+        ),
+      });
+
+      new Resolver(this, "brandBriefByDateResolver", {
+        api: gqlApi,
+        dataSource: brandBriefsDS,
+        typeName: "Query",
+        fieldName: "brandBriefByDate",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefByDate.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefByDate.res.vtl",
+        ),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+}

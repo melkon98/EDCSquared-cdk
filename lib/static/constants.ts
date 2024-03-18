@@ -68,3 +68,24 @@ export const APP_DOMAIN = "edcsquared.io";
 export const TEST_APP_SUBDOMAIN = "test";
 
 export const GQL_API_NAME = "edcsquared-gql-api";
+
+export const ENVS = {
+  ENV: "master",
+  REGION: "us-east-1",
+  FFMPEG_LAYER_ARN: "arn:aws:lambda:us-east-1:995966967167:layer:ffmpeg:1",
+  TIKTOK_BUSINESS_API_BASE_URL:
+    "https://business-api.tiktok.com/open_api/v1.3/",
+  BUILD_PREFIX: "amplify-export-edcsquared/function/",
+  SCHEMA_PREFIX: "amplify-export-edcsquared/api/",
+  BCC_EMAIL: "creatoralerts@edcsquared.io",
+  INSTAGRAM_URL: "https://www.instagram.com/edcsq/",
+  LINKEDIN_URL: "https://www.linkedin.com/company/edcsquared/",
+  LOGIN_PAGE_URL: "https://app.edcsquared.io/login",
+  MAILER_EMAIL: "creatoralerts@edcsquared.io",
+  TIKTOK_URL: "https://www.tiktok.com/@edcsquared",
+  USER_POOL_ID: "us-east-1_auCDskee6",
+  WEBSITE_URL: "https://www.edcsquared.io/",
+  NOTIFICATION_EMAIL: "creatoralerts@edcsquared.io",
+};
+
+export const ONE_GIGABYTE_IN_MEGA_BYTES = 1024;
