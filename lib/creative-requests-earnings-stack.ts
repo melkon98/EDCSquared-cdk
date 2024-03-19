@@ -50,16 +50,18 @@ export class CreativeRequestEarningsStack extends Stack {
       });
 
       // Mutations:
-      creativeEarningsDS.createResolver("addCreativeEarningResolver", {
-        typeName: "Mutation",
-        fieldName: "addCreativeEarning",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.req.vtl",
-        ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
-        ),
-      });
+
+      // FIXME: Find request mapping template
+      // creativeEarningsDS.createResolver("addCreativeEarningResolver", {
+      //   typeName: "Mutation",
+      //   fieldName: "addCreativeEarning",
+      //   requestMappingTemplate: MappingTemplate.fromFile(
+      //     "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.req.vtl",
+      //   ),
+      //   responseMappingTemplate: MappingTemplate.fromFile(
+      //     "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
+      //   ),
+      // });
 
       creativeEarningsDS.createResolver(
         "createCreativeRequestEarningsResolver",
