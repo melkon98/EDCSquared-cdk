@@ -7,9 +7,19 @@ import { Code, LayerVersion, Runtime } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import * as path from "node:path";
 import {
+  APPROVED_ADS_TABLE_NAME,
+  BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
+  BRAND_BRIEFS_TABLE_NAME,
+  BRAND_PROFILE_TABLE_NAME,
+  CREATIVE_REQUESTS_BY_BRAND_BRIEF_INDEX_NAME,
   CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
+  CREATIVE_REQUESTS_TABLE_NAME,
   ENVS,
+  EXCHANGE_API_BASE_URL,
+  STATIC_STORAGE_BUCKET,
   USER_PROFILES_TABLE_NAME,
+  USER_WALLETS_BY_OWNER_INDEX_NAME,
+  USER_WALLETS_TABLE_NAME,
 } from "./static/constants";
 
 export class LambdaStack extends Stack {
@@ -27,14 +37,15 @@ export class LambdaStack extends Stack {
       handler: "index.handler",
       functionName: "addCreativeEarning",
       environment: {
-        CREATIVE_REQUEST_EARNINGS_TABLE_NAME: "",
-        CREATIVE_REQUESTS_TABLE_NAME: "",
+        CREATIVE_REQUEST_EARNINGS_TABLE_NAME:
+          CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
+        CREATIVE_REQUESTS_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
         ENV: ENVS.ENV,
-        EXCHANGE_API_URL: "",
+        EXCHANGE_API_URL: "https://api.apilayer.com/exchangerates_data/latest",
         REGION: ENVS.REGION,
-        USER_PROFILE_TABLE_NAME: "",
-        USER_WALLETS_BY_OWNER_INDEX: "",
-        USER_WALLET_TABLE_NAME: "",
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+        USER_WALLETS_BY_OWNER_INDEX: USER_WALLETS_BY_OWNER_INDEX_NAME,
+        USER_WALLET_TABLE_NAME: USER_WALLETS_TABLE_NAME,
       },
     });
 
@@ -79,14 +90,16 @@ export class LambdaStack extends Stack {
         functionName: "adminQueries81bcd8e9",
         environment: {
           // FIXME: Bucket name
-          CREATIVES_BUCKET: "",
-          CREATIVE_REQUESTS_BY_BRAND_BRIEF_ID_INDEX: "byBrandBrief",
-          CREATIVE_REQUEST_EARNINGS_TABLE_NAME: "",
-          CREATIVE_REQUEST_TALBE_NAME: "",
-          BRAND_BRIEF_TABLE_NAME: "",
-          BRAND_BRIEFS_TABLE_NAME: "",
-          BRAND_BRIEFS_BY_BRAND_ID_INDEX: "",
-          EXCHANGE_RATES_API_BASE_URL: "",
+          CREATIVES_BUCKET: STATIC_STORAGE_BUCKET,
+          CREATIVE_REQUESTS_BY_BRAND_BRIEF_ID_INDEX:
+            CREATIVE_REQUESTS_BY_BRAND_BRIEF_INDEX_NAME,
+          CREATIVE_REQUEST_EARNINGS_TABLE_NAME:
+            CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
+          CREATIVE_REQUEST_TALBE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+          BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+          BRAND_BRIEFS_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+          BRAND_BRIEFS_BY_BRAND_ID_INDEX: BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
+          EXCHANGE_RATES_API_BASE_URL: EXCHANGE_API_BASE_URL,
         },
       },
     );
@@ -98,10 +111,22 @@ export class LambdaStack extends Stack {
           "amplify-export-edcsquared/function/createAd/amplify-builds/createAd-357171396f4779625261-build.zip",
         ),
       ),
+      // TODO: increase timeout
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "createAd",
-      environment: {},
+      environment: {
+        APPROVED_ADS_TABLE_NAME: APPROVED_ADS_TABLE_NAME,
+        BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+        CREATIVES_BUCKET: STATIC_STORAGE_BUCKET,
+        CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        SANDBOX_ADGROUP_ID: "",
+        SANDBOX_ADVERTISER_ID: "",
+        TIKTOK_API_ACCESS_TOKEN: "",
+        TIKTOK_BUISNESS_V2_API: "",
+      },
     });
 
     const createManualAd = new lambda.Function(this, "createManualAd", {
@@ -117,16 +142,12 @@ export class LambdaStack extends Stack {
       environment: {
         ENV: ENVS.ENV,
         REGION: ENVS.REGION,
-        APPROVED_ADS_TABLE_NAME: "",
-        BRAND_BRIEF_TABLE_NAME: "",
-        BRAND_TABLE_NAME: "",
-        CREATIVE_REQUESTS_TABLE_NAME: "",
-        CREATIVE_REQUEST_EARNINGS_TABLE_NAME: "",
-        SANDBOX_ADGROUP_ID: "",
-        SANDBOX_ADVERTISER_ID: "",
-        TIKTOK_API_ACCESS_TOKEN: "",
-        TIKTOK_BUSINESS_V2_API:
-          "https://business-api.tiktok.com/open_api/v1.2/",
+        APPROVED_ADS_TABLE_NAME: APPROVED_ADS_TABLE_NAME,
+        BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+        BRAND_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
+        CREATIVE_REQUESTS_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+        CREATIVE_REQUEST_EARNINGS_TABLE_NAME:
+          CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
       },
     });
 
@@ -141,10 +162,10 @@ export class LambdaStack extends Stack {
       handler: "index.handler",
       functionName: "createMetaAd",
       environment: {
-        APPROVED_ADS_TABLE_NAME: "",
-        BRAND_BRIEF_TABLE_NAME: "",
-        BRAND_TABLE_NAME: "",
-        CREATIVE_REQUESTS_TABLE_NAME: "",
+        APPROVED_ADS_TABLE_NAME: APPROVED_ADS_TABLE_NAME,
+        BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+        BRAND_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
+        CREATIVE_REQUESTS_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
         ENV: ENVS.ENV,
         REGION: ENVS.REGION,
         FACEBOOK_API_BASE_URL: "https://graph.facebook.com/v19.0/",
@@ -168,11 +189,11 @@ export class LambdaStack extends Stack {
           ENV: ENVS.ENV,
           REGION: ENVS.REGION,
           TKTOK_BUSNS_API_BASE_URL: ENVS.TIKTOK_BUSINESS_API_BASE_URL,
-          USER_PROFILE_TABLE_NAME: "",
-          CREATIVE_REQUEST_TABLE_NAME: "",
-          CREATIVES_BUCKET: "",
-          BRAND_PROFILE_TABLE_NAME: "",
-          BRAND_BRIEF_TABLE_NAME: "",
+          USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+          CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+          CREATIVES_BUCKET: STATIC_STORAGE_BUCKET,
+          BRAND_PROFILE_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
+          BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
         },
       },
     );
@@ -193,7 +214,7 @@ export class LambdaStack extends Stack {
         environment: {
           ENV: ENVS.ENV,
           REGION: ENVS.REGION,
-          CREATIVE_REQUEST_TABLE_NAME: "",
+          CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
         },
       },
     );
@@ -241,9 +262,9 @@ export class LambdaStack extends Stack {
         handler: "index.handler",
         functionName: "creativeRequestUniqueId",
         environment: {
-          BRAND_BRIEFS_BY_BRAND_ID_INDEX: "byBrand",
-          BRAND_BRIEF_TABLE_NAME: "",
-          CREATIVE_REQUEST_TABLE_NAME: "",
+          BRAND_BRIEFS_BY_BRAND_ID_INDEX: BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
+          BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+          CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
           ENV: ENVS.ENV,
           REGION: ENVS.REGION,
         },
@@ -296,9 +317,9 @@ export class LambdaStack extends Stack {
         handler: "index.handler",
         functionName: "getApprovedAdsCountWithinRange",
         environment: {
-          APPROVED_ADS_TABLE_NAME: "",
-          BRAND_USER_TABLE_NAME: "",
-          BUCKET_NAME: "",
+          APPROVED_ADS_TABLE_NAME: APPROVED_ADS_TABLE_NAME,
+          BRAND_USER_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
+          BUCKET_NAME: STATIC_STORAGE_BUCKET,
           ENV: ENVS.ENV,
           REGION: ENVS.REGION,
         },
@@ -316,9 +337,9 @@ export class LambdaStack extends Stack {
       handler: "index.handler",
       functionName: "getBrandAvatar",
       environment: {
-        USER_PROFILE_TABLE_NAME: "",
-        BUCKET_NAME: "",
-        BRAND_USER_TABLE_NAME: "",
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+        BUCKET_NAME: STATIC_STORAGE_BUCKET,
+        BRAND_USER_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
         ENV: ENVS.ENV,
         REGION: ENVS.REGION,
       },
@@ -335,7 +356,7 @@ export class LambdaStack extends Stack {
       handler: "index.handler",
       functionName: "getBrandBriefs",
       environment: {
-        BRAND_BRIEF_TABLE_NAME: "",
+        BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
       },
     });
 
@@ -350,10 +371,10 @@ export class LambdaStack extends Stack {
       handler: "index.handler",
       functionName: "getCampaignSpent",
       environment: {
-        APPROVED_ADS_TABLE_NAME: "",
-        EXCHANGE_API_URL: "",
+        APPROVED_ADS_TABLE_NAME: APPROVED_ADS_TABLE_NAME,
+        EXCHANGE_API_URL: EXCHANGE_API_BASE_URL,
         TIKTOK_BUSNS_API_BASE_URL: ENVS.TIKTOK_BUSINESS_API_BASE_URL,
-        USER_PROFILE_TABLE_NAME: "",
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
       },
     });
 
@@ -404,7 +425,8 @@ export class LambdaStack extends Stack {
         handler: "index.handler",
         functionName: "getCreativeEarningsByCreative",
         environment: {
-          CREATIVE_REQUESTS_EARNINGS_TABLE_NAME: "",
+          CREATIVE_REQUESTS_EARNINGS_TABLE_NAME:
+            CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
           CREATIVE_EARNINGS_BY_CREATIVE_REQUEST_ID:
             "creativeRequestEarningsByCreativeRequestId",
         },
@@ -425,9 +447,9 @@ export class LambdaStack extends Stack {
         handler: "index.handler",
         functionName: "getCreativeRequests",
         environment: {
-          CREATIVE_REQUEST_TABLE_NAME: "",
-          BRAND_BRIEF_TABLE_NAME: "",
-          BRAND_BREIFS_BY_BRAND_ID_INDEX: "",
+          CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+          BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+          BRAND_BREIFS_BY_BRAND_ID_INDEX: BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
         },
       },
     );

@@ -89,3 +89,7 @@ export const ENVS = {
 };
 
 export const ONE_GIGABYTE_IN_MEGA_BYTES = 1024;
+
+export const STATIC_STORAGE_BUCKET = "user-storage91541-master";
+export const EXCHANGE_API_BASE_URL =
+  "https://api.apilayer.com/exchangerates_data/latest";

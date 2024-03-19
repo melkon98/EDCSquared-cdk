@@ -87,16 +87,36 @@ export class CreativeRequestEarningsStack extends Stack {
       // Mutations:
 
       // FIXME: Find request mapping template
-      // creativeEarningsDS.createResolver("addCreativeEarningResolver", {
-      //   typeName: "Mutation",
-      //   fieldName: "addCreativeEarning",
-      //   requestMappingTemplate: MappingTemplate.fromFile(
-      //     "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.req.vtl",
-      //   ),
-      //   responseMappingTemplate: MappingTemplate.fromFile(
-      //     "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
-      //   ),
-      // });
+      const addCreativeEarningDS = gqlApi.addLambdaDataSource(
+        "addCreativeEarningLambdaDataSource",
+        lambda.Function.fromFunctionName(
+          this,
+          "addCreativeEarningLogicalId",
+          "addCreativeEarning",
+        ),
+      );
+
+      addCreativeEarningDS.createResolver("addCreativeEarningResolver", {
+        fieldName: "addCreativeEarning",
+        typeName: "Query",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeAddCreativeEarningLambdaDataSource.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl ",
+        ),
+      });
+
+      creativeEarningsDS.createResolver("addCreativeEarningResolver", {
+        typeName: "Mutation",
+        fieldName: "addCreativeEarning",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
+        ),
+      });
 
       creativeEarningsDS.createResolver(
         "createCreativeRequestEarningsResolver",
