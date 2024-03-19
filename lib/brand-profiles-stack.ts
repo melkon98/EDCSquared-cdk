@@ -88,6 +88,40 @@ export class BrandProfilesStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteBrandProfile.res.vtl",
         ),
       });
+
+      // Subscriptions:
+      brandProfilesDS.createResolver("onCreateBrandProfileResolver", {
+        typeName: "Subscription",
+        fieldName: "onCreateBrandProfile",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateBrandProfile.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateBrandProfile.res.vtl",
+        ),
+      });
+
+      brandProfilesDS.createResolver("onUpdateBrandProfileResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateBrandProfile",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBrandProfile.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBrandProfile.res.vtl",
+        ),
+      });
+
+      brandProfilesDS.createResolver("onDeleteBrandProfileResolver", {
+        typeName: "Subscription",
+        fieldName: "onDeleteBrandProfile",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteBrandProfile.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteBrandProfile.res.vtl",
+        ),
+      });
     } catch (err) {}
   }
 }

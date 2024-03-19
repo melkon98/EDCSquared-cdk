@@ -105,14 +105,14 @@ export class BestPracticesStack extends Stack {
         ),
       });
 
-      bestPracticesDS.createResolver("onUpdateBestPracticesResolver", {
+      bestPracticesDS.createResolver("onDeleteBestPracticesResolver", {
         typeName: "Subscription",
-        fieldName: "onUpdateBestPractices",
+        fieldName: "onDeleteBestPractices",
         requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBestPractices.req.vtl",
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteBestPractices.req.vtl",
         ),
         responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBestPractices.res.vtl",
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteBestPractices.res.vtl",
         ),
       });
     } catch (err) {
