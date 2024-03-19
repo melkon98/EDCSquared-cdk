@@ -176,7 +176,7 @@ export class ApprovedAdsStack extends Stack {
         typeName: "Subscription",
         fieldName: "onCreateApprovedAds",
         requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.deleteApprovedAds.req.vtl",
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateApprovedAds.req.vtl",
         ),
         responseMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateApprovedAds.res.vtl",
