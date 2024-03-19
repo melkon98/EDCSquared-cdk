@@ -48,6 +48,60 @@ export class CreativeRequestEarningsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.listCreativeRequestEarnings.res.vtl",
         ),
       });
+
+      // Mutations:
+      creativeEarningsDS.createResolver("addCreativeEarningResolver", {
+        typeName: "Mutation",
+        fieldName: "addCreativeEarning",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
+        ),
+      });
+
+      creativeEarningsDS.createResolver(
+        "createCreativeRequestEarningsResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "createCreativeRequestEarnings",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequestEarnings.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequestEarnings.res.vtl",
+          ),
+        },
+      );
+
+      creativeEarningsDS.createResolver(
+        "updateCreativeRequestEarningsResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "updateCreativeRequestEarnings",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateCreativeRequestEarnings.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateCreativeRequestEarnings.res.vtl",
+          ),
+        },
+      );
+
+      creativeEarningsDS.createResolver(
+        "deleteCreativeRequestEarningsResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "deleteCreativeRequestEarnings",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteCreativeRequestEarnings.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteCreativeRequestEarnings.res.vtl",
+          ),
+        },
+      );
     } catch (err) {
       console.error(err);
     }
