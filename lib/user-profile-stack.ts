@@ -74,6 +74,40 @@ export class UserProfileStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteUserProfile.res.vtl",
         ),
       });
+
+      // Subscription
+      userProfileDS.createResolver("onCreateUserProfileResolver", {
+        typeName: "Subscription",
+        fieldName: "onCreateUserProfile",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserProfile.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserProfile.res.vtl",
+        ),
+      });
+
+      userProfileDS.createResolver("onUpdateUserProfileResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateUserProfile",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserProfile.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserProfile.res.vtl",
+        ),
+      });
+
+      userProfileDS.createResolver("onDeleteUserProfiler", {
+        typeName: "Subscription",
+        fieldName: "onDeleteUserProfile",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserProfile.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserProfile.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
