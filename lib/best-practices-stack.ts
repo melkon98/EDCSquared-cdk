@@ -81,6 +81,40 @@ export class BestPracticesStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateBestPractices.res.vtl",
         ),
       });
+
+      // Subscriptions:
+      bestPracticesDS.createResolver("onCreateBestPracticesResolver", {
+        typeName: "Subscription",
+        fieldName: "onCreateBestPractices",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateBestPractices.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateBestPractices.res.vtl",
+        ),
+      });
+
+      bestPracticesDS.createResolver("onUpdateBestPracticesResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateBestPractices",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBestPractices.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBestPractices.res.vtl",
+        ),
+      });
+
+      bestPracticesDS.createResolver("onUpdateBestPracticesResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateBestPractices",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBestPractices.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBestPractices.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
