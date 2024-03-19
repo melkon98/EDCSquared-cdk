@@ -73,6 +73,40 @@ export class UserWalletsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteUserWallet.res.vtl",
         ),
       });
+
+      // Subscription
+      userWalletsDS.createResolver("onCreateUserWalletResolver", {
+        typeName: "Subscription",
+        fieldName: "onCreateUserWallet",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserWallet.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserWallet.res.vtl",
+        ),
+      });
+
+      userWalletsDS.createResolver("onUpdateUserWalletResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateUserWallet",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserWallet.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserWallet.res.vtl",
+        ),
+      });
+
+      userWalletsDS.createResolver("onDeleteUserWalletResolver", {
+        typeName: "Subscription",
+        fieldName: "onDeleteUserWallet",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserWallet.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserWallet.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
