@@ -1,6 +1,7 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { GraphqlApi, MappingTemplate, Resolver } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
+import * as lambda from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { CREATIVE_REQUESTS_EARNINGS_TABLE_NAME } from "./static/constants";
 
@@ -23,18 +24,52 @@ export class CreativeRequestEarningsStack extends Stack {
     );
 
     try {
-      new Resolver(this, "getCreativeRequestEarningsResolver", {
-        api: gqlApi,
-        dataSource: creativeEarningsDS,
+      const getCreativeEarningDS = gqlApi.addLambdaDataSource(
+        "InvokeGetCreativeEarningsLambdaDataSource",
+        lambda.Function.fromFunctionName(
+          this,
+          "getCreativeEarningsLogicalId",
+          "getCreativeEarnings",
+        ),
+      );
+
+      getCreativeEarningDS.createResolver("getCreativeEarningsResolver", {
         typeName: "Query",
-        fieldName: "getCreativeRequestEarnings",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestEarnings.req.vtl",
-        ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestEarnings.res.vtl",
-        ),
+        fieldName: "getCreativeEarnings",
+        // requestMappingTemplate: MappingTemplate.fromFile(
+        //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeEarningsLambdaDataSource.req.vtl",
+        // ),
+        // responseMappingTemplate: MappingTemplate.fromFile(
+        //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeEarnings.res.vtl",
+        // ),
       });
+
+      // getCreativeEarningDS.createResolver("getCreativeEarningDSResolver", {
+      //   typeName: "Query",
+      //   fieldName: "getCreativeEarningDS",
+      //   // requestMappingTemplate: MappingTemplate.fromFile(
+      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeEarningsLambdaDataSource.req.vtl",
+      //   // ),
+      //   // responseMappingTemplate: MappingTemplate.fromFile(
+      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeEarnings.res.vtl",
+      //   // ),
+      // });
+
+      // new Resolver(this, "getCreativeRequestEarningsResolver", {
+      //   api: gqlApi,
+      //   dataSource: creativeEarningsDS,
+      //   typeName: "Query",
+      //   fieldName: "getCreativeRequestEarnings",
+      //   // requestMappingTemplate: MappingTemplate.fromFile(
+      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestEarnings.req.vtl",
+      //   // ),
+      //   // responseMappingTemplate: MappingTemplate.fromFile(
+      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestEarnings.res.vtl",
+      //   // ),
+      //   code: Code.fromAsset(
+      //     "lib/amplify-export-edcsquared/function/getCreativeEarnings/amplify-builds/getCreativeEarnings-55445470734e73755954-build.zip",
+      //   ),
+      // });
 
       new Resolver(this, "listCreativeRequestEarningsResolver", {
         api: gqlApi,

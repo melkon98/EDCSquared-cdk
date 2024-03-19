@@ -1,4 +1,5 @@
 import { CfnOutput, Stack, StackProps } from "aws-cdk-lib";
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import { Bucket } from "aws-cdk-lib/aws-s3";
 import * as s3Deploy from "aws-cdk-lib/aws-s3-deployment";
 import { Construct } from "constructs";
@@ -23,6 +24,14 @@ export class S3Stack extends Stack {
       this,
       "hostingBucket",
       HOSTING_BUCKET_NAME,
+    );
+
+    hostingBucket.addToResourcePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        resources: ["arn:aws:s3:::edcsquared-website-hosting-bucket-master"],
+        actions: ["s3:GetObject", "s3:GetObjectAcl"],
+      }),
     );
 
     hostingBucket.grantPublicAccess();

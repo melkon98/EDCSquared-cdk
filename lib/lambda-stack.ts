@@ -1,12 +1,16 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import { LambdaFunction } from "aws-cdk-lib/aws-events-targets";
-import { PolicyStatement } from "aws-cdk-lib/aws-iam";
+import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import { Code, LayerVersion, Runtime } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import * as path from "node:path";
-import { ENVS } from "./static/constants";
+import {
+  CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
+  ENVS,
+  USER_PROFILES_TABLE_NAME,
+} from "./static/constants";
 
 export class LambdaStack extends Stack {
   constructor(construct: Construct, id: string, props?: StackProps) {
@@ -367,12 +371,22 @@ export class LambdaStack extends Stack {
         handler: "index.handler",
         functionName: "getCreativeEarnings",
         environment: {
-          CREATIVE_REQUEST_EARNINGS_TABLE_NAME: "",
-          CREATIVE_REQUEST_EARNING_TABLE_NAME: "",
-          USER_PROFILE_TABLE_NAME: "",
-          USER_WALLET_TABLE_NAME: "",
+          CREATIVE_REQUEST_EARNINGS_TABLE_NAME:
+            CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
+          CREATIVE_REQUEST_EARNING_TABLE_NAME:
+            CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
+          USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+          USER_WALLET_TABLE_NAME: USER_PROFILES_TABLE_NAME,
         },
       },
+    );
+
+    getCreativeEarnings.addToRolePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["dynamodb:*"],
+        resources: ["*"],
+      }),
     );
 
     const getCreativeEarningsByCreative = new lambda.Function(
