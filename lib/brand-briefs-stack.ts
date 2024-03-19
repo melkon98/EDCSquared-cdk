@@ -96,6 +96,40 @@ export class BrandBriefsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefByDate.res.vtl",
         ),
       });
+
+      // Mutations:
+      brandBriefsDS.createResolver("createBrandBriefResolver", {
+        typeName: "Mutation",
+        fieldName: "createBrandBrief",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createBrandBrief.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createBrandBrief.res.vtl",
+        ),
+      });
+
+      brandBriefsDS.createResolver("updateBrandBriefResolver", {
+        typeName: "Mutation",
+        fieldName: "updateBrandBrief",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateBrandBrief.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateBrandBrief.res.vtl",
+        ),
+      });
+
+      brandBriefsDS.createResolver("deleteBrandBriefResolver", {
+        typeName: "Mutation",
+        fieldName: "deleteBrandBrief",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteBrandBrief.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteBrandBrief.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
