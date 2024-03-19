@@ -164,6 +164,40 @@ export class CreativeRequestStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteCreativeRequest.res.vtl",
         ),
       });
+
+      // Subscriptions:
+      creativeRequestDS.createResolver("onCreateCreativeRequestResolver", {
+        typeName: "Subscription",
+        fieldName: "onCreateCreativeRequest",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateCreativeRequest.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateCreativeRequest.res.vtl",
+        ),
+      });
+
+      creativeRequestDS.createResolver("onUpdateCreativeRequestResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateCreativeRequest",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateCreativeRequest.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateCreativeRequest.res.vtl",
+        ),
+      });
+
+      creativeRequestDS.createResolver("onDeleteCreativeRequestResolver", {
+        typeName: "Subscription",
+        fieldName: "onDeleteCreativeRequest",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteCreativeRequest.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteCreativeRequest.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
