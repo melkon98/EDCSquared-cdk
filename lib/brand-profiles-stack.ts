@@ -122,6 +122,8 @@ export class BrandProfilesStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteBrandProfile.res.vtl",
         ),
       });
-    } catch (err) {}
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
