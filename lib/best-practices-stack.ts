@@ -58,6 +58,29 @@ export class BestPracticesStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.bestPracticesByActive.res.vtl",
         ),
       });
+
+      // Mutations:
+      bestPracticesDS.createResolver("createBestPracticesResolver", {
+        typeName: "Mutation",
+        fieldName: "createBestPractices",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createBestPractices.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createBestPractices.res.vtl",
+        ),
+      });
+
+      bestPracticesDS.createResolver("updateBestPracticesResolver", {
+        typeName: "Mutation",
+        fieldName: "updateBestPractices",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateBestPractices.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateBestPractices.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
