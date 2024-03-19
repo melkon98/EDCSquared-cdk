@@ -76,6 +76,40 @@ export class UserTransactionsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteUserTransactions.res.vtl",
         ),
       });
+
+      // Subscription
+      userTransactionsDS.createResolver("onCreateUserTransactionsResolver", {
+        typeName: "Subscription",
+        fieldName: "onCreateUserTransactions",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserTransactions.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserTransactions.res.vtl",
+        ),
+      });
+
+      userTransactionsDS.createResolver("onUpdateUserTransactionsResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateUserTransactions",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserTransactions.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserTransactions.res.vtl",
+        ),
+      });
+
+      userTransactionsDS.createResolver("onDeleteUserTransactionsResolver", {
+        typeName: "Subscription",
+        fieldName: "onDeleteUserTransactions",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserTransactions.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserTransactions.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
