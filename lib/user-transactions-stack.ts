@@ -42,6 +42,40 @@ export class UserTransactionsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.listUserTransactions.res.vtl",
         ),
       });
+
+      // Mutations:
+      userTransactionsDS.createResolver("createUserTransactionsResolver", {
+        typeName: "Mutation",
+        fieldName: "createUserTransactions",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createUserTransactions.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createUserTransactions.res.vtl",
+        ),
+      });
+
+      userTransactionsDS.createResolver("updateUserTransactionsResolver", {
+        typeName: "Mutation",
+        fieldName: "updateUserTransactions",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateUserTransactions.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.updateUserTransactions.res.vtl",
+        ),
+      });
+
+      userTransactionsDS.createResolver("deleteUserTransactionsResolver", {
+        typeName: "Mutation",
+        fieldName: "deleteUserTransactions",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteUserTransactions.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteUserTransactions.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
