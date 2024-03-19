@@ -145,7 +145,7 @@ export class BrandBriefsStack extends Stack {
 
       brandBriefsDS.createResolver("onUpdateBrandBriefResolver", {
         typeName: "Subscription",
-        fieldName: "onCreateBrandBrief",
+        fieldName: "onUpdateBrandBrief",
         requestMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateBrandBrief.req.vtl",
         ),
