@@ -77,6 +77,49 @@ export class UserPaymentDetailsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteUserPaymentDetails.res.vtl",
         ),
       });
+
+      // Subscriptions:
+      userPaymentDetailsDS.createResolver(
+        "onCreateUserPaymentDetailsResolver",
+        {
+          typeName: "Subscription",
+          fieldName: "onCreateUserPaymentDetails",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserPaymentDetails.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateUserPaymentDetails.res.vtl",
+          ),
+        },
+      );
+
+      userPaymentDetailsDS.createResolver(
+        "onUpdateUserPaymentDetailsResolver",
+        {
+          typeName: "Subscription",
+          fieldName: "onUpdateUserPaymentDetails",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserPaymentDetails.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateUserPaymentDetails.res.vtl",
+          ),
+        },
+      );
+
+      userPaymentDetailsDS.createResolver(
+        "onDeleteUserPaymentDetailsResolver",
+        {
+          typeName: "Subscription",
+          fieldName: "onDeleteUserPaymentDetails",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserPaymentDetails.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteUserPaymentDetails.res.vtl",
+          ),
+        },
+      );
     } catch (err) {
       console.error(err);
     }
