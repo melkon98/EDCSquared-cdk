@@ -170,6 +170,40 @@ export class ApprovedAdsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteApprovedAds.res.vtl",
         ),
       });
+
+      // Subscriptions:
+      approvedAdsDS.createResolver("onCreateApprovedAdsResolver", {
+        typeName: "Subscription",
+        fieldName: "onCreateApprovedAds",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.deleteApprovedAds.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateApprovedAds.res.vtl",
+        ),
+      });
+
+      approvedAdsDS.createResolver("onUpdateApprovedAdsResolver", {
+        typeName: "Subscription",
+        fieldName: "onUpdateApprovedAds",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateApprovedAds.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateApprovedAds.res.vtl",
+        ),
+      });
+
+      approvedAdsDS.createResolver("onDeleteApprovedAdsResolver", {
+        typeName: "Subscription",
+        fieldName: "onDeleteApprovedAds",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteApprovedAds.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteApprovedAds.res.vtl",
+        ),
+      });
     } catch (err) {
       console.error(err);
     }
