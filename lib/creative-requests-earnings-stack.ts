@@ -104,6 +104,49 @@ export class CreativeRequestEarningsStack extends Stack {
           ),
         },
       );
+
+      // Subscriptions:
+      creativeEarningsDS.createResolver(
+        "onCreateCreativeRequestEarningsResolver",
+        {
+          typeName: "Subscription",
+          fieldName: "onCreateCreativeRequestEarnings",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateCreativeRequestEarnings.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onCreateCreativeRequestEarnings.res.vtl",
+          ),
+        },
+      );
+
+      creativeEarningsDS.createResolver(
+        "onUpdateCreativeRequestEarningsResolver",
+        {
+          typeName: "Subscription",
+          fieldName: "onUpdateCreativeRequestEarnings",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateCreativeRequestEarnings.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onUpdateCreativeRequestEarnings.res.vtl",
+          ),
+        },
+      );
+
+      creativeEarningsDS.createResolver(
+        "onDeleteCreativeRequestEarningsResolver",
+        {
+          typeName: "Subscription",
+          fieldName: "onDeleteCreativeRequestEarnings",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteCreativeRequestEarnings.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Subscription.onDeleteCreativeRequestEarnings.res.vtl",
+          ),
+        },
+      );
     } catch (err) {
       console.error(err);
     }
