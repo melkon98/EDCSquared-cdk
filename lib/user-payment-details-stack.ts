@@ -1,15 +1,18 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import { MappingTemplate } from "aws-cdk-lib/aws-appsync";
+import { GraphqlApi, MappingTemplate } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Construct } from "constructs";
-import { GraphqlApiStack } from "./gql-api-stack";
 import { USER_PAYMENT_DETAILS_TABLE_NAME } from "./static/constants";
 export class UserPaymentDetailsStack extends Stack {
-  constructor(construct: Construct, id: string, props?: StackProps) {
+  constructor(
+    construct: Construct,
+    id: string,
+    gqlApi: GraphqlApi,
+    props?: StackProps,
+  ) {
     super(construct, id, props);
 
     try {
-      const gqlApi = new GraphqlApiStack(this, "gqlApi").gqlApi;
       const userPaymentDetailsDS = gqlApi.addDynamoDbDataSource(
         "userPaymentDetails",
         Table.fromTableName(

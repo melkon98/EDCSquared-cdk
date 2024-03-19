@@ -3,6 +3,8 @@
 *.d.ts
 node_modules
 
+build/**
+
 # CDK asset staging directory
 .cdk.staging
 cdk.out
@@ -13,3 +15,5 @@ cdk.out
 .env
 build/
 amplify-export-edcsquared/
+
+

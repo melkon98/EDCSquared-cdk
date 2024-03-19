@@ -1,19 +1,28 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import { MappingTemplate } from "aws-cdk-lib/aws-appsync";
+import { GraphqlApi, MappingTemplate } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Construct } from "constructs";
-import { GraphqlApiStack } from "./gql-api-stack";
 import { APPROVED_ADS_TABLE_NAME } from "./static/constants";
 import path = require("path");
 
 export class ApprovedAdsStack extends Stack {
-  constructor(construct: Construct, id: string, props: StackProps) {
+  constructor(
+    construct: Construct,
+    id: string,
+    gqlApi: GraphqlApi,
+    props?: StackProps,
+  ) {
     super(construct, id, props);
 
-    const gqlApi = new GraphqlApiStack(this, "gqlApi").gqlApi;
+    const approvedAdsTable = Table.fromTableName(
+      this,
+      "approvedAdsTable",
+      APPROVED_ADS_TABLE_NAME,
+    );
+
     const approvedAdsDS = gqlApi.addDynamoDbDataSource(
       "approvedAds",
-      Table.fromTableName(this, "approvedAdsTable", APPROVED_ADS_TABLE_NAME),
+      approvedAdsTable,
     );
 
     try {

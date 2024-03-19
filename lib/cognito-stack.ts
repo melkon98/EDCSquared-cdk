@@ -5,7 +5,7 @@ import { Construct } from "constructs";
 export class CognitoStack extends Stack {
   public readonly userPoolId: string;
 
-  constructor(construct: Construct, id: string, props: StackProps) {
+  constructor(construct: Construct, id: string, props?: StackProps) {
     super(construct, id, props);
 
     const userPool = UserPool.fromUserPoolArn(
