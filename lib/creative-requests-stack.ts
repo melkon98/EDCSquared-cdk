@@ -1,6 +1,7 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { GraphqlApi, MappingTemplate } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
+import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { CREATIVE_REQUESTS_TABLE_NAME } from "./static/constants";
 
@@ -130,6 +131,29 @@ export class CreativeRequestStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.creativeRequestId.res.vtl",
         ),
       });
+
+      const getCreativeRequestCountBetweenDatesDS = gqlApi.addLambdaDataSource(
+        "getCreativeRequestCountBetweenDatesLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "getCreativeRequestCountBetweenDatesLogicalId",
+          "getCreativeRequestCountBetweenDates",
+        ),
+      );
+
+      getCreativeRequestCountBetweenDatesDS.createResolver(
+        "getCreativeRequestCountBetweenDatesResolver",
+        {
+          typeName: "Query",
+          fieldName: "getCreativeRequestCountBetweenDates",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsCountByBrandIdLambdaDataSource.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestCountBetweenDates.res.vtl",
+          ),
+        },
+      );
 
       // Mutations:
       creativeRequestDS.createResolver("createCreativeRequestResolver", {
