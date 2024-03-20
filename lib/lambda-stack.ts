@@ -487,7 +487,7 @@ export class LambdaStack extends Stack {
         code: Code.fromAsset(
           path.join(
             __dirname,
-            "amplify-export-edcsquared/function/getCreativeRequests/amplify-builds/getCreativeRequests-6d4a6f3667656a6d6f45-build.zip",
+            "amplify-export-edcsquared/function/getCreativeRequests/amplify-builds/latest-build.zip",
           ),
         ),
         runtime: Runtime.NODEJS_LATEST,
@@ -499,6 +499,13 @@ export class LambdaStack extends Stack {
           BRAND_BREIFS_BY_BRAND_ID_INDEX: BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
         },
       },
+    );
+    getCreativeRequests.addToRolePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["dynamodb:*"],
+        resources: ["*"],
+      }),
     );
 
     const getCreativeRequestsCountByBrandId = new lambda.Function(
