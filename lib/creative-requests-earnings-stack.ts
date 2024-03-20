@@ -51,7 +51,7 @@ export class CreativeRequestEarningsStack extends Stack {
         "getCreativeEarningsByCreativeResolver",
         {
           typeName: "Query",
-          fieldName: "GetCreativeEarningsByCreativeLambdaDataSource",
+          fieldName: "getCreativeEarningsByCreative",
         },
       );
 
