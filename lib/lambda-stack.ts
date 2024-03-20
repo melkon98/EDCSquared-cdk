@@ -533,6 +533,13 @@ export class LambdaStack extends Stack {
         },
       },
     );
+    getCreativeRequestsCountByBrandId.addToRolePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["dynamodb:*", "cloudwatch:*"],
+        resources: ["*"],
+      }),
+    );
 
     const getCreatorBrandBriefs = new lambda.Function(
       this,

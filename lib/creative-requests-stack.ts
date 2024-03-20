@@ -35,7 +35,36 @@ export class CreativeRequestStack extends Stack {
       getCreativeRequestsLDS.createResolver("getCreativeRequestsResolver", {
         typeName: "Query",
         fieldName: "getCreativeRequests",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsLambdaDataSource.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsLambdaDataSource.res.vtl",
+        ),
       });
+
+      const getCreativeRequestsCountByBrandId = gqlApi.addLambdaDataSource(
+        "getCreativeRequestsCountByBrandIdLDS",
+        Function.fromFunctionName(
+          this,
+          "getCreativeRequestsCountByBrandIdLID",
+          "getCreativeRequestsCountByBrandId",
+        ),
+      );
+
+      getCreativeRequestsCountByBrandId.createResolver(
+        "getCreativeRequestsCountByBrandIdResolver",
+        {
+          typeName: "Query",
+          fieldName: "getCreativeRequestsCount",
+          requestMappingTemplate: MappingTemplate.fromString(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsCountByBrandIdLambdaDataSource.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromString(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestsCount.res.vtl",
+          ),
+        },
+      );
 
       creativeRequestDS.createResolver("getCreativeRequestResolver", {
         typeName: "Query",
