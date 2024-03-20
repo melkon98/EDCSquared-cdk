@@ -1,4 +1,5 @@
 import { Duration, Stack, StackProps } from "aws-cdk-lib";
+import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import { LambdaFunction } from "aws-cdk-lib/aws-events-targets";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
@@ -339,6 +340,20 @@ export class LambdaStack extends Stack {
           REGION: ENVS.REGION,
         },
       },
+    );
+
+    const approvedAdsTable = Table.fromTableName(
+      this,
+      "approvedAdsTableLID",
+      APPROVED_ADS_TABLE_NAME,
+    );
+
+    getApprovedAdsCountWithinRange.addToRolePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["dynamodb:*"],
+        resources: [approvedAdsTable.tableArn],
+      }),
     );
 
     const getBrandAvatar = new lambda.Function(this, "getBrandAvatar", {

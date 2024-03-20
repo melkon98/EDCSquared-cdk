@@ -137,7 +137,7 @@ export class CreativeRequestStack extends Stack {
         Function.fromFunctionName(
           this,
           "getCreativeRequestCountBetweenDatesLogicalId",
-          "getCreativeRequestCountBetweenDates",
+          "getDailyCreativeRequestsCount",
         ),
       );
 
