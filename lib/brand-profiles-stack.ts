@@ -1,6 +1,7 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { GraphqlApi, MappingTemplate, Resolver } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
+import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { BRAND_PROFILE_TABLE_NAME } from "./static/constants";
 
@@ -87,6 +88,20 @@ export class BrandProfilesStack extends Stack {
         responseMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteBrandProfile.res.vtl",
         ),
+      });
+
+      const getBrandAvatarDS = gqlApi.addLambdaDataSource(
+        "getBrandAvatarLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "getBrandAvatarLogicalId",
+          "getBrandAvatar",
+        ),
+      );
+
+      getBrandAvatarDS.createResolver("getBrandAvatarResolver", {
+        typeName: "Query",
+        fieldName: "getBrandAvatar",
       });
 
       // Subscriptions:
