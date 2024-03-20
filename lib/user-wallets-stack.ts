@@ -63,7 +63,7 @@ export class UserWalletsStack extends Stack {
 
       getWalletInfoLambdaDS.createResolver("getWalletInfoResolver", {
         typeName: "Query",
-        fieldName: "getWalletInfoLambdaDS",
+        fieldName: "getWalletInfo",
       });
 
       // Mutations:
