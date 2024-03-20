@@ -1,6 +1,7 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { GraphqlApi, MappingTemplate } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
+import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { USER_WALLETS_TABLE_NAME } from "./static/constants";
 
@@ -49,6 +50,20 @@ export class UserWalletsStack extends Stack {
         responseMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.userWalletsByOwner.res.vtl",
         ),
+      });
+
+      const getWalletInfoLambdaDS = gqlApi.addLambdaDataSource(
+        "getWalletInfoLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "getWalletInfoLogicalId",
+          "getWalletInfo",
+        ),
+      );
+
+      getWalletInfoLambdaDS.createResolver("getWalletInfoResolver", {
+        typeName: "Query",
+        fieldName: "getWalletInfoLambdaDS",
       });
 
       // Mutations:
