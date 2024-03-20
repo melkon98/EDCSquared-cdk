@@ -42,7 +42,7 @@ export class CreativeRequestEarningsStack extends Stack {
         "GetCreativeEarningsByCreativeLambdaDataSource",
         lambda.Function.fromFunctionName(
           this,
-          "getCreativeEarningsLogicalId",
+          "getCreativeEarningsByCreativeLogicalId",
           "getCreativeEarnings",
         ),
       );
