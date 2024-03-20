@@ -155,6 +155,23 @@ export class CreativeRequestStack extends Stack {
         },
       );
 
+      const creativeRequestsByCreatorDS = gqlApi.addLambdaDataSource(
+        "creativeRequestsByCreatorLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "creativeRequestsByCreatorLogicalId",
+          "creativeRequestsByCreator",
+        ),
+      );
+
+      creativeRequestsByCreatorDS.createResolver(
+        "creativeRequestsByCreatorResolver",
+        {
+          typeName: "Query",
+          fieldName: "creativeRequestsByCreator",
+        },
+      );
+
       // Mutations:
       creativeRequestDS.createResolver("createCreativeRequestResolver", {
         typeName: "Mutation",
