@@ -14,6 +14,7 @@ import { BrandProfilesStack } from "./brand-profiles-stack";
 import { CognitoStack } from "./cognito-stack";
 import { CreativeRequestEarningsStack } from "./creative-requests-earnings-stack";
 import { CreativeRequestStack } from "./creative-requests-stack";
+import { MiscStack } from "./misc-stack";
 import { GQL_API_NAME } from "./static/constants";
 import { UserPaymentDetailsStack } from "./user-payment-details-stack";
 import { UserProfileStack } from "./user-profile-stack";
@@ -65,6 +66,7 @@ export class GraphqlApiStack extends Stack {
     new UserWalletsStack(this, "UserWalletStack", gqlApi);
     new UserPaymentDetailsStack(this, "UserPaymentDetailsStack", gqlApi);
     new UserTransactionsStack(this, "UserTransactionsStack", gqlApi);
+    new MiscStack(this, "MiscStack", gqlApi);
     this.gqlApi = gqlApi;
   }
 }
