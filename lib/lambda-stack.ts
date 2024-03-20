@@ -2,7 +2,12 @@ import { Duration, Stack, StackProps } from "aws-cdk-lib";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import { LambdaFunction } from "aws-cdk-lib/aws-events-targets";
-import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
+import {
+  Effect,
+  PolicyStatement,
+  Role,
+  ServicePrincipal,
+} from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import { Code, LayerVersion, Runtime } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
@@ -40,6 +45,18 @@ import {
 export class LambdaStack extends Stack {
   constructor(construct: Construct, id: string, props?: StackProps) {
     super(construct, id, props);
+
+    const lambdaDefaultRole = new Role(this, "LambdaDefaultRole", {
+      assumedBy: new ServicePrincipal("lambda.amazonaws.com"),
+    });
+
+    lambdaDefaultRole.addToPolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["cloudwatch:*", "dynamodb:*"],
+        resources: ["*"],
+      }),
+    );
 
     const addCreativeEarning = new lambda.Function(this, "addCreativeEarning", {
       code: Code.fromAsset(
