@@ -39,11 +39,11 @@ export class CreativeRequestEarningsStack extends Stack {
       });
 
       const getCreativeEarningsByCreativeDS = gqlApi.addLambdaDataSource(
-        "GetCreativeEarningsByCreativeLambdaDataSource",
+        "InvokeGetCreativeEarningsByCreativeLambdaDataSource",
         lambda.Function.fromFunctionName(
           this,
           "getCreativeEarningsByCreativeLogicalId",
-          "getCreativeEarnings",
+          "getCreativeEarningsByCreative",
         ),
       );
 
