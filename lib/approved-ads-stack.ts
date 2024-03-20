@@ -1,6 +1,7 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { GraphqlApi, MappingTemplate } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
+import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { APPROVED_ADS_TABLE_NAME } from "./static/constants";
 import path = require("path");
@@ -51,6 +52,23 @@ export class ApprovedAdsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.approvedAdsById.res.vtl",
         ),
       });
+
+      const getApprovedAdsCountWithinRangeDS = gqlApi.addLambdaDataSource(
+        "getApprovedAdsCountWithinRangeLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "getApprovedAdsCountWithinRangeLogicalId",
+          "getApprovedAdsCountWithinRange",
+        ),
+      );
+
+      getApprovedAdsCountWithinRangeDS.createResolver(
+        "getApprovedAdsCountWithinRangeResolver",
+        {
+          typeName: "Query",
+          fieldName: "getApprovedAdsCountWithinRange",
+        },
+      );
 
       approvedAdsDS.createResolver("getApprovedAdsCountWithinRangeResolver", {
         typeName: "Query",

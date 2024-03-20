@@ -55,33 +55,6 @@ export class CreativeRequestEarningsStack extends Stack {
         },
       );
 
-      // getCreativeEarningDS.createResolver("getCreativeEarningDSResolver", {
-      //   typeName: "Query",
-      //   fieldName: "getCreativeEarningDS",
-      //   // requestMappingTemplate: MappingTemplate.fromFile(
-      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeEarningsLambdaDataSource.req.vtl",
-      //   // ),
-      //   // responseMappingTemplate: MappingTemplate.fromFile(
-      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeEarnings.res.vtl",
-      //   // ),
-      // });
-
-      // new Resolver(this, "getCreativeRequestEarningsResolver", {
-      //   api: gqlApi,
-      //   dataSource: creativeEarningsDS,
-      //   typeName: "Query",
-      //   fieldName: "getCreativeRequestEarnings",
-      //   // requestMappingTemplate: MappingTemplate.fromFile(
-      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestEarnings.req.vtl",
-      //   // ),
-      //   // responseMappingTemplate: MappingTemplate.fromFile(
-      //   //   "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestEarnings.res.vtl",
-      //   // ),
-      //   code: Code.fromAsset(
-      //     "lib/amplify-export-edcsquared/function/getCreativeEarnings/amplify-builds/getCreativeEarnings-55445470734e73755954-build.zip",
-      //   ),
-      // });
-
       new Resolver(this, "listCreativeRequestEarningsResolver", {
         api: gqlApi,
         dataSource: creativeEarningsDS,
@@ -96,7 +69,6 @@ export class CreativeRequestEarningsStack extends Stack {
       });
 
       // Mutations:
-
       // FIXME: Find request mapping template
       const addCreativeEarningDS = gqlApi.addLambdaDataSource(
         "addCreativeEarningLambdaDataSource",
