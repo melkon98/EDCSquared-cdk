@@ -1,6 +1,7 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { GraphqlApi, MappingTemplate, Resolver } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
+import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { BRAND_BRIEFS_TABLE_NAME } from "./static/constants";
 
@@ -95,6 +96,20 @@ export class BrandBriefsStack extends Stack {
         responseMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.brandBriefByDate.res.vtl",
         ),
+      });
+
+      const getBrandBriefs = gqlApi.addLambdaDataSource(
+        "getBrandBriefsLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "getBrandBriefsLogicalId",
+          "getBrandBriefs",
+        ),
+      );
+
+      getBrandBriefs.createResolver("getBrandBriefsResolver", {
+        typeName: "Query",
+        fieldName: "getBrandBriefs",
       });
 
       // Mutations:
