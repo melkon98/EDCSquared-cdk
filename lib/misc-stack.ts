@@ -216,6 +216,78 @@ export class MiscStack extends Stack {
       fieldName: "createMetaAd",
     });
 
+    const createManualAdLDS = gqlApi.addLambdaDataSource(
+      "createManualAdLDS",
+      Function.fromFunctionName(this, "createManualAdLID", "createManualAd"),
+    );
+
+    createManualAdLDS.createResolver("createManualAdResolver", {
+      typeName: "Mutation",
+      fieldName: "createManualAd",
+    });
+
+    const listAdGroupsLDS = gqlApi.addLambdaDataSource(
+      "listAdGroupsLDS",
+      Function.fromFunctionName(this, "listAdGroupsLID", "listAdGroups"),
+    );
+
+    listAdGroupsLDS.createResolver("listAdGroupsResolver", {
+      fieldName: "listAdGroups",
+      typeName: "Mutation",
+    });
+
+    const listCampaignsLDS = gqlApi.addLambdaDataSource(
+      "listCampaignsLDS",
+      Function.fromFunctionName(this, "listCampaignsLID", "listCampaigns"),
+    );
+
+    listCampaignsLDS.createResolver("listCampaignsResolver", {
+      typeName: "Mutation",
+      fieldName: "listCampaigns",
+    });
+
+    const getFacebookCampaignLDS = gqlApi.addLambdaDataSource(
+      "getFacebookCampaignLDS",
+      Function.fromFunctionName(
+        this,
+        "getFacebookCampaignLID",
+        "getFacebookCampaign",
+      ),
+    );
+
+    getFacebookCampaignLDS.createResolver("getFacebookCampaignResolver", {
+      typeName: "Mutation",
+      fieldName: "getFacebookCampaign",
+    });
+
+    const getFacebookAdSetsLDS = gqlApi.addLambdaDataSource(
+      "getFacebookAdSetsLDS",
+      Function.fromFunctionName(
+        this,
+        "getFacebookAdSetsLID",
+        "getFacebookAdSets",
+      ),
+    );
+
+    getFacebookAdSetsLDS.createResolver("getFacebookAdSetsResolver", {
+      typeName: "Mutation",
+      fieldName: "getFacebookAdSets",
+    });
+
+    const getVideoFromAuthCodeLDS = gqlApi.addLambdaDataSource(
+      "getVideoFromAuthCodeLDS",
+      Function.fromFunctionName(
+        this,
+        "getVideoFromAuthCodeLID",
+        "getVideoFromAuthCode",
+      ),
+    );
+
+    getVideoFromAuthCodeLDS.createResolver("getVideoFromAuthCodeResolver", {
+      typeName: "Mutation",
+      fieldName: "getVideoFromAuthCode",
+    });
+
     // Subscriptions:
   }
 }
