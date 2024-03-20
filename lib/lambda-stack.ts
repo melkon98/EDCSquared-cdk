@@ -1,4 +1,4 @@
-import { Stack, StackProps } from "aws-cdk-lib";
+import { Duration, Stack, StackProps } from "aws-cdk-lib";
 import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import { LambdaFunction } from "aws-cdk-lib/aws-events-targets";
 import { Effect, PolicyStatement } from "aws-cdk-lib/aws-iam";
@@ -18,6 +18,7 @@ import {
   CREATIVE_REQUESTS_TABLE_NAME,
   ENVS,
   EXCHANGE_API_BASE_URL,
+  FIFTEEN_MINUTES_IN_SECONDS,
   INSTAGRAM_URL,
   LINKEDIN_URL,
   LOGIN_PAGE_URL,
@@ -124,6 +125,7 @@ export class LambdaStack extends Stack {
         ),
       ),
       // TODO: increase timeout
+      timeout: Duration.seconds(FIFTEEN_MINUTES_IN_SECONDS),
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "createAd",
@@ -173,6 +175,7 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "createMetaAd",
+      timeout: Duration.seconds(FIFTEEN_MINUTES_IN_SECONDS),
       environment: {
         APPROVED_ADS_TABLE_NAME: APPROVED_ADS_TABLE_NAME,
         BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,

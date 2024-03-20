@@ -109,3 +109,5 @@ export const LOGIN_PAGE_URL = "https://app.edcsquared.io/login";
 export const MAILER_EMAIL = "creatoralerts@edcsquared.io";
 export const TIKTOK_URL = "https://www.tiktok.com/@edcsquared";
 export const WEBSITE_URL = "https://www.edcsquared.io/";
+
+export const FIFTEEN_MINUTES_IN_SECONDS = 900;
