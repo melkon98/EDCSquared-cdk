@@ -93,3 +93,19 @@ export const ONE_GIGABYTE_IN_MEGA_BYTES = 1024;
 export const STATIC_STORAGE_BUCKET = "user-storage91541-master";
 export const EXCHANGE_API_BASE_URL =
   "https://api.apilayer.com/exchangerates_data/latest";
+
+export const APP_REDIRECT_URI = "https://app.edcsquared.io/account";
+export const TKTOK_APP_ID = "7204707364971481094";
+export const TKTOK_BUSNS_API_BASE_URL =
+  "https://business-api.tiktok.com/open_api/v1.3/";
+export const TKTOK_SECRET = "f00309a914025be7d09ce298ed49de44c0da1100";
+
+export const USER_POOL_ID = "us-east-1_auCDskee6";
+
+export const BCC_EMAIL = "creatoralerts@edcsquared.io";
+export const INSTAGRAM_URL = "https://www.instagram.com/edcsq/";
+export const LINKEDIN_URL = "https://www.linkedin.com/company/edcsquared/";
+export const LOGIN_PAGE_URL = "https://app.edcsquared.io/login";
+export const MAILER_EMAIL = "creatoralerts@edcsquared.io";
+export const TIKTOK_URL = "https://www.tiktok.com/@edcsquared";
+export const WEBSITE_URL = "https://www.edcsquared.io/";

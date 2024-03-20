@@ -8,6 +8,8 @@ import { Construct } from "constructs";
 import * as path from "node:path";
 import {
   APPROVED_ADS_TABLE_NAME,
+  APP_REDIRECT_URI,
+  BCC_EMAIL,
   BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
   BRAND_BRIEFS_TABLE_NAME,
   BRAND_PROFILE_TABLE_NAME,
@@ -16,10 +18,21 @@ import {
   CREATIVE_REQUESTS_TABLE_NAME,
   ENVS,
   EXCHANGE_API_BASE_URL,
+  INSTAGRAM_URL,
+  LINKEDIN_URL,
+  LOGIN_PAGE_URL,
+  MAILER_EMAIL,
   STATIC_STORAGE_BUCKET,
+  TIKTOK_URL,
+  TKTOK_APP_ID,
+  TKTOK_BUSNS_API_BASE_URL,
+  TKTOK_SECRET,
+  USER_POOL_ID,
   USER_PROFILES_TABLE_NAME,
+  USER_TRANSACTIONS_TABLE_NAME,
   USER_WALLETS_BY_OWNER_INDEX_NAME,
   USER_WALLETS_TABLE_NAME,
+  WEBSITE_URL,
 } from "./static/constants";
 
 export class LambdaStack extends Stack {
@@ -54,7 +67,12 @@ export class LambdaStack extends Stack {
       resources: ["*"],
     });
 
-    // //FIXME: add lambda layer
+    const ffmpegLayer = LayerVersion.fromLayerVersionArn(
+      this,
+      "ffmpegLayer",
+      "arn:aws:lambda:us-east-1:995966967167:layer:ffmpeg:1",
+    );
+
     const addWatermark = new lambda.Function(this, "addWatermark", {
       code: Code.fromAsset(
         path.join(
@@ -65,16 +83,18 @@ export class LambdaStack extends Stack {
       runtime: Runtime.PYTHON_3_11,
       handler: "index.handler",
       functionName: "addWatermark",
+      layers: [ffmpegLayer],
       environment: {
         ENV: ENVS.ENV,
         REGION: ENVS.REGION,
+        STORAGE_STATICSTORAGE_BUCKETNAME: STATIC_STORAGE_BUCKET,
       },
     });
 
     addWatermark.addLayers(
       LayerVersion.fromLayerVersionArn(this, "ffmpeg", ENVS.FFMPEG_LAYER_ARN),
     );
-    //
+
     const adminQueries81bcd8e9 = new lambda.Function(
       this,
       "AdminQueries81bcd8e9",
@@ -89,7 +109,6 @@ export class LambdaStack extends Stack {
         handler: "index.handler",
         functionName: "adminQueries81bcd8e9",
         environment: {
-          // FIXME: Bucket name
           CREATIVES_BUCKET: STATIC_STORAGE_BUCKET,
           CREATIVE_REQUESTS_BY_BRAND_BRIEF_ID_INDEX:
             CREATIVE_REQUESTS_BY_BRAND_BRIEF_INDEX_NAME,
@@ -468,6 +487,15 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "getCreativeRequestsCountByBrandId",
+        environment: {
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+          BRAND_BRIEFS_BY_BRAND_ID_INDEX: BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
+          BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+          CREATIVE_REQUESTS_BY_BRAND_BRIEF_ID_INDEX:
+            CREATIVE_REQUESTS_BY_BRAND_BRIEF_INDEX_NAME,
+          CREATIVE_REQUESTS_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+        },
       },
     );
 
@@ -484,6 +512,12 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "getCreatorBrandBriefs",
+        environment: {
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+          BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+          BRAND_PROFILE_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+        },
       },
     );
 
@@ -500,6 +534,11 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "getDailyCreativeRequestCount",
+        environment: {
+          CREATIVE_REQUESTS_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+        },
       },
     );
 
@@ -513,6 +552,10 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "getFacebookAdSets",
+      environment: {
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+      },
     });
 
     const getFacebookCampaign = new lambda.Function(
@@ -529,6 +572,10 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "getFacebookCampaign",
+        environment: {
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+        },
       },
     );
 
@@ -545,6 +592,13 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "getVideoFromAuthCode",
+        environment: {
+          TKTOK_APP_ID: "7316736400710600709",
+          TKTOK_BUSNS_API_BASE_URL:
+            "https://business-api.tiktok.com/open_api/v1.3/",
+          TKTOK_SECRET: "LzcvI1WokL3YZveNzxcJTlNxhK1i8kOU",
+          USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+        },
       },
     );
 
@@ -573,6 +627,16 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "linkCreatorInstagramAccount",
+        environment: {
+          CLIENT_ID: "305635815781564",
+          CLIENT_SECRET: "3a4874a2778cf4cdd311697bc8fe0c36",
+          ENV: ENVS.ENV,
+          META_AUTH_API: "https://api.instagram.com/oauth/access_token",
+          META_USER_API: "https://graph.instagram.com/me",
+          REDIRECT_URI: "https://stage.edcsquared.io/account",
+          REGION: ENVS.REGION,
+          USER_PROFILE_TALBE_NAME: USER_PROFILES_TABLE_NAME,
+        },
       },
     );
 
@@ -589,6 +653,17 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "linkCreatorTiktokAccount",
+        environment: {
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+          REDIRECT_URI: APP_REDIRECT_URI,
+          TIKTOK_APP_ID: "7204707364971481094",
+          TIKTOK_CLIENT_KEY: "awnfemvqci11wj4b",
+          TIKTOK_CLIENT_SECRET: "dd31eb2cf5abe46de1d9ed2ab8b47bed",
+          TIKTOK_OAUTH_API: "https://open.tiktokapis.com/v2/oauth/token/",
+          TIKTOK_V2_API: "https://open.tiktokapis.com/v2/user/info/",
+          USERS_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+        },
       },
     );
 
@@ -605,6 +680,11 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "linkCreatorYoutubeAccount",
+        environment: {
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+          USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+        },
       },
     );
 
@@ -618,6 +698,18 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "linkTiktokAccount",
+      environment: {
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        TIKTOK_V2_AUTH_API: "https://open.tiktokapis.com/v2/oauth/token/",
+        TKTOK_APP_ID: "7204753405493903362",
+        TKTOK_BUSNS_API_ACCESS_ENDPOINT:
+          "https://business-api.tiktok.com/open_api/v1.3/oauth2/access_token/",
+        TKTOK_BUSNS_API_GET_ADVERTISERS:
+          "https://business-api.tiktok.com/open_api/v1.3/oauth2/advertiser/get",
+        TKTOK_SECRET: "f00309a914025be7d09ce298ed49de44c0da1100",
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+      },
     });
 
     const linkYoutubeAccount = new lambda.Function(this, "linkYoutubeAccount", {
@@ -630,6 +722,11 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "linkYoutubeAccount",
+      environment: {
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+      },
     });
 
     const listAdGroups = new lambda.Function(this, "listAdGroups", {
@@ -642,6 +739,13 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "listAdGroups",
+      environment: {
+        TKTOK_APP_ID,
+        TKTOK_BUSNS_API_BASE_URL,
+        TKTOK_SECRET,
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+      },
     });
 
     const listCampaigns = new lambda.Function(this, "listCampaigns", {
@@ -654,6 +758,14 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "listCampaigns",
+      environment: {
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        TKTOK_APP_ID,
+        TKTOK_BUSNS_API_BASE_URL,
+        TKTOK_SECRET,
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+      },
     });
 
     const paymentDetailsEmail = new lambda.Function(
@@ -669,6 +781,12 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "paymentDetailsEmail",
+        environment: {
+          USER_WALLET_TABLE_NAME: USER_WALLETS_TABLE_NAME,
+          USER_POOL_ID,
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+        },
       },
     );
 
@@ -687,6 +805,18 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "sendContentSubmissionEmail",
+        environment: {
+          BCC_EMAIL,
+          INSTAGRAM_URL,
+          LINKEDIN_URL,
+          LOGIN_PAGE_URL,
+          MAILER_EMAIL,
+          REGION: ENVS.REGION,
+          ENV: ENVS.ENV,
+          TIKTOK_URL,
+          USER_POOL_ID,
+          WEBSITE_URL,
+        },
       },
     );
     sendContentSubmissionEmail.addToRolePolicy(sendEmailPolicy);
@@ -702,6 +832,11 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "updateUserType",
+      environment: {
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+      },
     });
 
     const userWalletCronInvocationSchedule = new Rule(
@@ -722,11 +857,23 @@ export class LambdaStack extends Stack {
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
       functionName: "userWallet",
+      environment: {
+        APPROVED_ADS_TABLE_NAME: APPROVED_ADS_TABLE_NAME,
+        CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        EXCHANGE_API_SECRET: "hy8H6VzPXg4WdTAC8JJNnGA9uXTk5KVH",
+        EXCHANGE_API_URL: "https://api.apilayer.com/exchangerates_data/latest",
+        TIKTOK_BUSNS_API_BASE_URL: TKTOK_BUSNS_API_BASE_URL,
+        USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+        USER_TRANSACTION_TABLE_NAME: USER_TRANSACTIONS_TABLE_NAME,
+        USER_WALLETS_TABLE_NAME: USER_WALLETS_TABLE_NAME,
+      },
     });
 
     userWalletCronInvocationSchedule.addTarget(new LambdaFunction(userWallet));
 
-    const validatePreviewUrl = new lambda.Function(this, "videoPreviewUrl", {
+    const videoPreviewUrl = new lambda.Function(this, "videoPreviewUrl", {
       code: Code.fromAsset(
         path.join(
           __dirname,
@@ -735,7 +882,13 @@ export class LambdaStack extends Stack {
       ),
       runtime: Runtime.NODEJS_LATEST,
       handler: "index.handler",
-      functionName: "validatePreviewUrl",
+      functionName: "videoPreviewUrl",
+      environment: {
+        BUCKET_NAME: STATIC_STORAGE_BUCKET,
+        CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+      },
     });
 
     const validateTiktokAccess = new lambda.Function(
@@ -751,6 +904,12 @@ export class LambdaStack extends Stack {
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "validateTiktokAccess",
+        environment: {
+          TKTOK_APP_ID,
+          TKTOK_BUSNS_API_GET_ADVERTISERS:
+            "https://business-api.tiktok.com/open_api/v1.3/oauth2/advertiser/get",
+          TKTOK_SECRET,
+        },
       },
     );
   }
