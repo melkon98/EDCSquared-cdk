@@ -24,6 +24,19 @@ export class CreativeRequestStack extends Stack {
     );
 
     try {
+      const getCreativeRequestsLDS = gqlApi.addLambdaDataSource(
+        "getCreativeRequestsLDS",
+        Function.fromFunctionName(
+          this,
+          "getCreativeRequestsLID",
+          "getCreativeRequests",
+        ),
+      );
+      getCreativeRequestsLDS.createResolver("getCreativeRequestsResolver", {
+        typeName: "Query",
+        fieldName: "getCreativeRequests",
+      });
+
       creativeRequestDS.createResolver("getCreativeRequestResolver", {
         typeName: "Query",
         fieldName: "getCreativeRequest",
