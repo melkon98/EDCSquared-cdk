@@ -106,6 +106,116 @@ export class MiscStack extends Stack {
       },
     );
 
+    const linkCreatorInstagramAccountDS = gqlApi.addLambdaDataSource(
+      "linkCreatorInstagramAccountLambdaDataSource",
+      Function.fromFunctionName(
+        this,
+        "linkCreatorInstagramAccountLogicalId",
+        "linkCreatorInstagramAccount",
+      ),
+    );
+
+    linkCreatorInstagramAccountDS.createResolver(
+      "linkCreatorInstagramAccountResolver",
+      {
+        typeName: "Mutation",
+        fieldName: "linkCreatorInstagramAccount",
+      },
+    );
+
+    const linkFacebookAccountDS = gqlApi.addLambdaDataSource(
+      "linkFacebookAccountLambdaDataSource",
+      Function.fromFunctionName(
+        this,
+        "linkFacebookAccountLogicalId",
+        "linkFacebookAccount",
+      ),
+    );
+
+    linkFacebookAccountDS.createResolver("linkFacebookAccountResolver", {
+      typeName: "Mutation",
+      fieldName: "linkFacebookAccount",
+    });
+
+    const linkYoutubeAccountDS = gqlApi.addLambdaDataSource(
+      "linkYoutubeAccountLambdaDataSource",
+      Function.fromFunctionName(
+        this,
+        "linkYoutubeAccountLogicalId",
+        "linkYoutubeAccount",
+      ),
+    );
+
+    linkYoutubeAccountDS.createResolver("linkYoutubeAccountResolver", {
+      typeName: "Mutation",
+      fieldName: "linkYoutubeAccount",
+    });
+
+    const linkCreatorYoutubeAccountDS = gqlApi.addLambdaDataSource(
+      "linkCreatorYoutubeAccountLambdaDataSource",
+      Function.fromFunctionName(
+        this,
+        "linkCreatorYoutubeAccountLogicalId",
+        "linkCreatorYoutubeAccount",
+      ),
+    );
+
+    linkCreatorYoutubeAccountDS.createResolver(
+      "linkCreatorYoutubeAccountResolver",
+      {
+        typeName: "Mutation",
+        fieldName: "linkCreatorYoutubeAccount",
+      },
+    );
+
+    const validateTiktokAccessDS = gqlApi.addLambdaDataSource(
+      "validateTiktokAccessLambdaDataSource",
+      Function.fromFunctionName(
+        this,
+        "validateTiktokAccessLogicalId",
+        "validateTiktokAccess",
+      ),
+    );
+
+    validateTiktokAccessDS.createResolver("validateTiktokAccessResolver", {
+      typeName: "Mutation",
+      fieldName: "validateTiktokAccess",
+    });
+
+    const linkUserTypeDS = gqlApi.addLambdaDataSource(
+      "validateTiktokAccessLDS",
+      Function.fromFunctionName(
+        this,
+        "validateTiktokAccessLID",
+        "validateTiktokAccess",
+      ),
+    );
+
+    linkUserTypeDS.createResolver("linkUserType", {
+      typeName: "Mutation",
+      fieldName: "linkUserType",
+    });
+
+    const createAdsLDS = gqlApi.addLambdaDataSource(
+      "createAdsLDS",
+      Function.fromFunctionName(this, "createAdsLID", "createAds"),
+    );
+
+    createAdsLDS.createResolver("createAdsResolver", {
+      typeName: "Mutation",
+      fieldName: "createAds",
+    });
+
+    const createMetaAdLDS = gqlApi.addLambdaDataSource(
+      "createMetaAdLDS",
+      Function.fromFunctionName(this, "createMetaAdLID", "createMetaAd"),
+    );
+
+    createMetaAdLDS.createResolver("createMetaAdResolver", {
+      typeName: "Mutation",
+      fieldName: "createMetaAd",
+    });
+
     // Subscriptions:
   }
 }
