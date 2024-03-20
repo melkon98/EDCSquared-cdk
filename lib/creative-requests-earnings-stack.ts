@@ -107,22 +107,11 @@ export class CreativeRequestEarningsStack extends Stack {
         ),
       );
 
-      addCreativeEarningDS.createResolver("addCreativeEarningResolver", {
-        fieldName: "addCreativeEarning",
-        typeName: "Query",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeAddCreativeEarningLambdaDataSource.req.vtl",
-        ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
-        ),
-      });
-
       creativeEarningsDS.createResolver("addCreativeEarningResolver", {
         typeName: "Mutation",
         fieldName: "addCreativeEarning",
         requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.req.vtl",
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeAddCreativeEarningLambdaDataSource.req.vtl",
         ),
         responseMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
