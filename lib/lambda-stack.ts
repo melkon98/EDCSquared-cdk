@@ -67,12 +67,6 @@ export class LambdaStack extends Stack {
       resources: ["*"],
     });
 
-    const ffmpegLayer = LayerVersion.fromLayerVersionArn(
-      this,
-      "ffmpegLayer",
-      "arn:aws:lambda:us-east-1:995966967167:layer:ffmpeg:1",
-    );
-
     const addWatermark = new lambda.Function(this, "addWatermark", {
       code: Code.fromAsset(
         path.join(
@@ -83,7 +77,6 @@ export class LambdaStack extends Stack {
       runtime: Runtime.PYTHON_3_11,
       handler: "index.handler",
       functionName: "addWatermark",
-      layers: [ffmpegLayer],
       environment: {
         ENV: ENVS.ENV,
         REGION: ENVS.REGION,
