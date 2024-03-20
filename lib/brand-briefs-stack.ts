@@ -20,6 +20,26 @@ export class BrandBriefsStack extends Stack {
     );
 
     try {
+      const getCreatorBrandBriefsLDS = gqlApi.addLambdaDataSource(
+        "getCreatorBrandBriefsLDS",
+        Function.fromFunctionName(
+          this,
+          "getCreatorBrandBriefsLID",
+          "getCreatorBrandBriefs",
+        ),
+      );
+
+      getCreatorBrandBriefsLDS.createResolver("getCreatorBrandBriefsResolver", {
+        typeName: "Query",
+        fieldName: "getCreatorBrandBriefs",
+        requestMappingTemplate: MappingTemplate.fromString(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreatorBrandBriefsLambdaDataSource.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromString(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreatorBrandBriefsLambdaDataSource.res.vtl",
+        ),
+      });
+
       new Resolver(this, "getBrandBriefResolver", {
         api: gqlApi,
         dataSource: brandBriefsDS,

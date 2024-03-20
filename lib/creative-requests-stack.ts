@@ -102,16 +102,28 @@ export class CreativeRequestStack extends Stack {
         },
       );
 
-      creativeRequestDS.createResolver("creativeRequestsByCreatorIdResolver", {
-        typeName: "Query",
-        fieldName: "creativeRequestsByCreatorId",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.creativeRequestsByCreatorId.req.vtl",
+      const creativeRequestsByCreatorLDS = gqlApi.addLambdaDataSource(
+        "creativeRequestsByCreatorLDS",
+        Function.fromFunctionName(
+          this,
+          "creativeRequestsByCreatorLID",
+          "creativeRequestsByCreator",
         ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.creativeRequestsByCreatorId.res.vtl",
-        ),
-      });
+      );
+
+      creativeRequestsByCreatorLDS.createResolver(
+        "creativeRequestsByCreatorIdResolver",
+        {
+          typeName: "Query",
+          fieldName: "creativeRequestsByCreatorId",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.creativeRequestsByCreatorId.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.creativeRequestsByCreatorId.res.vtl",
+          ),
+        },
+      );
 
       creativeRequestDS.createResolver("creativeRequestsByStatusResolver", {
         typeName: "Query",
