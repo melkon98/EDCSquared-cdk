@@ -67,19 +67,14 @@ export class ApprovedAdsStack extends Stack {
         {
           typeName: "Query",
           fieldName: "getApprovedAdsCountWithinRange",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetApprovedAdsCountWithinRangeLambdaDataSource.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetApprovedAdsCountWithinRangeLambdaDataSource.res.vtl",
+          ),
         },
       );
-
-      approvedAdsDS.createResolver("getApprovedAdsCountWithinRangeResolver", {
-        typeName: "Query",
-        fieldName: "getApprovedAdsCountWithinRange",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetApprovedAdsCountWithinRangeLambdaDataSource.req.vtl",
-        ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetApprovedAdsCountWithinRangeLambdaDataSource.res.vtl",
-        ),
-      });
 
       approvedAdsDS.createResolver("getApprovedAdsResolver", {
         typeName: "Query",
