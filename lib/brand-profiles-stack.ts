@@ -1,5 +1,12 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import { GraphqlApi, MappingTemplate, Resolver } from "aws-cdk-lib/aws-appsync";
+import {
+  Assign,
+  AttributeValues,
+  GraphqlApi,
+  MappingTemplate,
+  PrimaryKey,
+  Resolver,
+} from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
@@ -58,15 +65,35 @@ export class BrandProfilesStack extends Stack {
 
       // Mutations:
       const emptyDS = gqlApi.addNoneDataSource("createBrandProfileEmptyDS");
+      const data = [
+        "id",
+        "name",
+        "toneVoice",
+        "pillars",
+        "description",
+        "internalMission",
+        "strapLine",
+        "userEmail",
+        "tiktokHandle",
+        "vertical",
+        "metaData",
+        "hashtags",
+        "personalDescription",
+        "userProfileBrandId",
+      ];
+
       brandProfilesDS.createResolver("createBrandProfileResolver", {
         typeName: "Mutation",
         fieldName: "createBrandProfile",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createBrandProfile.req.vtl",
+        requestMappingTemplate: MappingTemplate.dynamoDbPutItem(
+          PrimaryKey.partition("id").auto(),
+          new AttributeValues("$ctx.args", [
+            new Assign("createdAt", "$util.time.nowISO8601()"),
+            new Assign("updatedAt", "$util.time.nowISO8601()"),
+            ...data.map((i) => new Assign(i, `$ctx.args.input.${i}`)),
+          ]),
         ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createBrandProfile.res.vtl",
-        ),
+        responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
       });
 
       brandProfilesDS.createResolver("updateBrandProfileResolver", {

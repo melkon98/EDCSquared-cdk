@@ -1,20 +1,15 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import { GraphqlApi, MappingTemplate, Resolver } from "aws-cdk-lib/aws-appsync";
+import {
+  GraphqlApi,
+  MappingTemplate,
+  PrimaryKey,
+  Resolver,
+  Values,
+} from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
-import {
-  BRAND_BRIEFS_TABLE_NAME,
-  CREATE_BRAND_BRIEF_APPROVED_ADS_AUTH_0_FUNCTION_MAPPING_TEMPLATE,
-  CREATE_BRAND_BRIEF_INIT_RESOLVER_REQUEST_MAPPING_TEMPLATE,
-  CREATE_BRAND_BRIEF_INIT_RESOLVER_RESPONSE_MAPPING_TEMPLATE,
-  CREATE_BRAND_BRIEF_MUTATION_AFTER_MAPPING_TEMPLATE,
-  CREATE_BRAND_BRIEF_MUTATION_BEFORE_MAPPING_TEMPLATE,
-  CREATE_BRAND_BRIEF_MUTATION_RESOLVER_FN_REQUEST_MAPPING_TEMPLATE,
-  CREATE_BRAND_BRIEF_MUTATION_RESOLVER_FN_RESPONSE_MAPPING_TEMPLATE,
-  CREATE_BRAND_BRIEF_PROFILE_POST_AUTH_0_FUNCTION_REQUEST_MAPPING_TEMPLATE,
-  PARSE_JSON_VTL_TEMPLATE,
-} from "./static/constants";
+import { BRAND_BRIEFS_TABLE_NAME } from "./static/constants";
 
 export class BrandBriefsStack extends Stack {
   constructor(
@@ -145,92 +140,15 @@ export class BrandBriefsStack extends Stack {
       });
 
       // Mutations:
-
-      const emptyDataSource = gqlApi.addNoneDataSource("emptyDS");
-      const createBrandBriefInitResolver = emptyDataSource.createFunction(
-        "createBrandBriefInitResolverLID",
-        {
-          name: "MutationcreateUserProfileinit0Function",
-          requestMappingTemplate: MappingTemplate.fromString(
-            CREATE_BRAND_BRIEF_INIT_RESOLVER_REQUEST_MAPPING_TEMPLATE,
-          ),
-          responseMappingTemplate: MappingTemplate.fromString(
-            CREATE_BRAND_BRIEF_INIT_RESOLVER_RESPONSE_MAPPING_TEMPLATE,
-          ),
-        },
-      );
-
-      const MutationcreateApprovedAdsauth0Function =
-        emptyDataSource.createFunction(
-          "MutationcreateApprovedAdsauth0Function",
-          {
-            name: "MutationcreateApprovedAdsauth0Function",
-            requestMappingTemplate: MappingTemplate.fromString(
-              CREATE_BRAND_BRIEF_APPROVED_ADS_AUTH_0_FUNCTION_MAPPING_TEMPLATE,
-            ),
-            responseMappingTemplate: MappingTemplate.fromString(
-              PARSE_JSON_VTL_TEMPLATE,
-            ),
-          },
-        );
-
-      // const brandProfileIdResolver = emptyDataSource.createFunction(
-      //   "createBrandBriefInitResolverLID",
-      //   {
-      //     name: "MutationcreateUserProfileinit0Function",
-      //     requestMappingTemplate: MappingTemplate.fromString(
-      //       CREATE_BRAND_BRIEF_INIT_RESOLVER_REQUEST_MAPPING_TEMPLATE,
-      //     ),
-      //     responseMappingTemplate: MappingTemplate.fromString(
-      //       CREATE_BRAND_BRIEF_INIT_RESOLVER_RESPONSE_MAPPING_TEMPLATE,
-      //     ),
-      //   },
-      // );
-
-      const MutationCreateBrandBriefDataResolverFn =
-        emptyDataSource.createFunction(
-          "MutationCreateBrandBriefDataResolverFn",
-          {
-            name: "MutationCreateBrandBriefDataResolverFn",
-            requestMappingTemplate: MappingTemplate.fromString(
-              CREATE_BRAND_BRIEF_MUTATION_RESOLVER_FN_REQUEST_MAPPING_TEMPLATE,
-            ),
-            responseMappingTemplate: MappingTemplate.fromString(
-              CREATE_BRAND_BRIEF_MUTATION_RESOLVER_FN_RESPONSE_MAPPING_TEMPLATE,
-            ),
-          },
-        );
-
-      const QuerygetUserProfilepostAuth0Function =
-        emptyDataSource.createFunction("QuerygetUserProfilepostAuth0Function", {
-          name: "QuerygetUserProfilepostAuth0Function",
-          requestMappingTemplate: MappingTemplate.fromString(
-            CREATE_BRAND_BRIEF_PROFILE_POST_AUTH_0_FUNCTION_REQUEST_MAPPING_TEMPLATE,
-          ),
-          responseMappingTemplate: MappingTemplate.fromString(
-            PARSE_JSON_VTL_TEMPLATE,
-          ),
-        });
-
-      const createBrandBriefResolver = gqlApi.createResolver(
-        "createBrandBriefResolver",
-        {
-          typeName: "Mutation",
-          fieldName: "createBrandBrief",
-          pipelineConfig: [
-            createBrandBriefInitResolver,
-            MutationcreateApprovedAdsauth0Function,
-            QuerygetUserProfilepostAuth0Function,
-            MutationCreateBrandBriefDataResolverFn,
-          ],
-          requestMappingTemplate: MappingTemplate.fromString(
-            CREATE_BRAND_BRIEF_MUTATION_BEFORE_MAPPING_TEMPLATE,
-          ),
-          responseMappingTemplate: MappingTemplate.fromString(
-            CREATE_BRAND_BRIEF_MUTATION_AFTER_MAPPING_TEMPLATE,
-          ),
-        },
-      );
+      brandBriefsDS.createResolver("CreateBrandBriefResolver", {
+        typeName: "Mutation",
+        fieldName: "createBrandBrief",
+        requestMappingTemplate: MappingTemplate.dynamoDbPutItem(
+          PrimaryKey.partition("id").auto(),
+          Values.projecting("input"),
+        ),
+        responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
+      });
 
       brandBriefsDS.createResolver("updateBrandBriefResolver", {
         typeName: "Mutation",
