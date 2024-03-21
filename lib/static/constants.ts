@@ -111,3 +111,154 @@ export const TIKTOK_URL = "https://www.tiktok.com/@edcsquared";
 export const WEBSITE_URL = "https://www.edcsquared.io/";
 
 export const FIFTEEN_MINUTES_IN_SECONDS = 900;
+
+export const CREATE_BRAND_BRIEF_MUTATION_RESOLVER_FN_REQUEST_MAPPING_TEMPLATE = `## [Start] Create Request template. **
+#set( $args = $util.defaultIfNull($ctx.stash.transformedArgs, $ctx.args) )
+## Set the default values to put request **
+#set( $mergedValues = $util.defaultIfNull($ctx.stash.defaultValues, {}) )
+## copy the values from input **
+$util.qr($mergedValues.putAll($util.defaultIfNull($args.input, {})))
+## set the typename **
+$util.qr($mergedValues.put("__typename", "BrandBrief"))
+#set( $nullIndexFields = [] )
+#set( $indexFields = ["vertical", "tiktokAdvertiserId", "brandId", "type"] )
+#foreach( $entry in $util.map.copyAndRetainAllKeys($mergedValues, $indexFields).entrySet() )
+  #if( $util.isNull($entry.value) )
+    $util.qr($nullIndexFields.add($entry.key))
+  #end
+#end
+#set( $mergedValues = $util.map.copyAndRemoveAllKeys($mergedValues, $nullIndexFields) )
+#set( $PutObject = {
+  "version": "2018-05-29",
+  "operation": "PutItem",
+  "attributeValues":   $util.dynamodb.toMapValues($mergedValues),
+  "condition": $condition
+} )
+#if( $args.condition )
+  $util.qr($ctx.stash.conditions.add($args.condition))
+#end
+## Begin - key condition **
+#if( $ctx.stash.metadata.modelObjectKey )
+  #set( $keyConditionExpr = {} )
+  #set( $keyConditionExprNames = {} )
+  #foreach( $entry in $ctx.stash.metadata.modelObjectKey.entrySet() )
+    $util.qr($keyConditionExpr.put("keyCondition$velocityCount", {
+  "attributeExists": false
+}))
+    $util.qr($keyConditionExprNames.put("#keyCondition$velocityCount", "$entry.key"))
+  #end
+  $util.qr($ctx.stash.conditions.add($keyConditionExpr))
+#else
+  $util.qr($ctx.stash.conditions.add({
+  "id": {
+      "attributeExists": false
+  }
+}))
+#end
+## End - key condition **
+## Start condition block **
+#if( $ctx.stash.conditions && $ctx.stash.conditions.size() != 0 )
+  #set( $mergedConditions = {
+  "and": $ctx.stash.conditions
+} )
+  #set( $Conditions = $util.parseJson($util.transform.toDynamoDBConditionExpression($mergedConditions)) )
+  #if( $Conditions.expressionValues && $Conditions.expressionValues.size() == 0 )
+    #set( $Conditions = {
+  "expression": $Conditions.expression,
+  "expressionNames": $Conditions.expressionNames
+} )
+  #end
+  ## End condition block **
+#end
+#if( $Conditions )
+  #if( $keyConditionExprNames )
+    $util.qr($Conditions.expressionNames.putAll($keyConditionExprNames))
+  #end
+  $util.qr($PutObject.put("condition", $Conditions))
+#end
+#if( $ctx.stash.metadata.modelObjectKey )
+  $util.qr($PutObject.put("key", $ctx.stash.metadata.modelObjectKey))
+#else
+  #set( $Key = {
+  "id":   $util.dynamodb.toDynamoDB($mergedValues.id)
+} )
+  $util.qr($PutObject.put("key", $Key))
+#end
+$util.toJson($PutObject)
+## [End] Create Request template. **`;
+
+export const CREATE_BRAND_BRIEF_MUTATION_RESOLVER_FN_RESPONSE_MAPPING_TEMPLATE = `## [Start] ResponseTemplate. **
+$util.qr($ctx.result.put("__operation", "Mutation"))
+#if( $ctx.error )
+  $util.error($ctx.error.message, $ctx.error.type)
+#else
+  $util.toJson($ctx.result)
+#end
+## [End] ResponseTemplate. **`;
+
+export const CREATE_BRAND_BRIEF_MUTATION_BEFORE_MAPPING_TEMPLATE = `$util.qr($ctx.stash.put("typeName", "Mutation"))
+$util.qr($ctx.stash.put("fieldName", "createBrandBrief"))
+$util.qr($ctx.stash.put("conditions", []))
+$util.qr($ctx.stash.put("metadata", {}))
+$util.qr($ctx.stash.metadata.put("dataSourceType", "AMAZON_DYNAMODB"))
+$util.qr($ctx.stash.metadata.put("apiId", "x4tpzbduz5c5ro2mzuyfv2navq"))
+$util.qr($ctx.stash.put("connectionAttributes", {}))
+$util.qr($ctx.stash.put("tableName", "BrandBrief-x4tpzbduz5c5ro2mzuyfv2navq-master"))
+$util.qr($ctx.stash.put("identityPoolId", "us-east-1:98a7c71c-e468-410d-96fd-d85e8e31df7e"))
+$util.qr($ctx.stash.put("adminRoles", ["us-east-1_LIgAsaOV1_Full-access/CognitoIdentityCredentials","us-east-1_LIgAsaOV1_Manage-only/CognitoIdentityCredentials","addCreativeEarning-master","getCreativeEarningByCreative-master","getApprovedAdsCountWithinRange-master"]))
+$util.toJson({})`;
+
+export const CREATE_BRAND_BRIEF_MUTATION_AFTER_MAPPING_TEMPLATE =
+  "$util.toJson($ctx.prev.result)";
+
+export const CREATE_BRAND_BRIEF_INIT_RESOLVER_REQUEST_MAPPING_TEMPLATE = `## [Start] Initialization default values. **
+$util.qr($ctx.stash.put("defaultValues", $util.defaultIfNull($ctx.stash.defaultValues, {})))
+#set( $createdAt = $util.time.nowISO8601() )
+$util.qr($ctx.stash.defaultValues.put("id", $util.autoId()))
+$util.qr($ctx.stash.defaultValues.put("createdAt", $createdAt))
+$util.qr($ctx.stash.defaultValues.put("updatedAt", $createdAt))
+$util.toJson({
+  "version": "2018-05-29",
+  "payload": {}
+})
+## [End] Initialization default values. **`;
+
+export const CREATE_BRAND_BRIEF_INIT_RESOLVER_RESPONSE_MAPPING_TEMPLATE =
+  "$util.toJson({})";
+
+export const CREATE_BRAND_BRIEF_APPROVED_ADS_AUTH_0_FUNCTION_MAPPING_TEMPLATE = `## [Start] Authorization Steps. **
+  $util.qr($ctx.stash.put("hasAuth", true))
+  #set( $inputFields = $util.parseJson($util.toJson($ctx.args.input.keySet())) )
+  #set( $isAuthorized = false )
+  #set( $allowedFields = [] )
+  #if( $util.authType() == "API Key Authorization" )
+  $util.unauthorized()
+  #end
+  #if( $util.authType() == "User Pool Authorization" )
+    #set( $isAuthorized = true )
+  #end
+  #if( !$isAuthorized && $allowedFields.isEmpty() )
+  $util.unauthorized()
+  #end
+  #if( !$isAuthorized )
+    #set( $deniedFields = $util.list.copyAndRemoveAll($inputFields, $allowedFields) )
+    #if( $deniedFields.size() > 0 )
+      $util.error("Unauthorized on \${deniedFields}", "Unauthorized")
+    #end
+  #end
+  $util.toJson({"version":"2018-05-29","payload":{}})
+  ## [End] Authorization Steps. **`;
+
+export const CREATE_BRAND_BRIEF_PROFILE_POST_AUTH_0_FUNCTION_REQUEST_MAPPING_TEMPLATE = `## [Start] Initialization default values. **
+  $util.qr($ctx.stash.put("defaultValues", $util.defaultIfNull($ctx.stash.defaultValues, {})))
+  #set( $createdAt = $util.time.nowISO8601() )
+  $util.qr($ctx.stash.defaultValues.put("id", $util.autoId()))
+  $util.qr($ctx.stash.defaultValues.put("createdAt", $createdAt))
+  $util.qr($ctx.stash.defaultValues.put("updatedAt", $createdAt))
+  $util.toJson({
+    "version": "2018-05-29",
+    "payload": {}
+  })
+  ## [End] Initialization default values. **`;
+
+export const PARSE_JSON_VTL_TEMPLATE = "$util.toJson({})";
