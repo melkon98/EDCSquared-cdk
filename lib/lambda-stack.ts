@@ -570,6 +570,14 @@ export class LambdaStack extends Stack {
       },
     );
 
+    getCreatorBrandBriefs.addToRolePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["dynamodb:*"],
+        resources: ["*"],
+      }),
+    );
+
     const getDailyCreativeRequestCount = new lambda.Function(
       this,
       "getDailyCreativeRequestCount",

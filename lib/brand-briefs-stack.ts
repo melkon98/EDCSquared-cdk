@@ -48,7 +48,7 @@ export class BrandBriefsStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreatorBrandBriefsLambdaDataSource.req.vtl",
         ),
         responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreatorBrandBriefs.res.vtl",
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreatorBrandBriefsLambdaDataSource.res.vtl",
         ),
       });
 
