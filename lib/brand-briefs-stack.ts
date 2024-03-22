@@ -37,6 +37,17 @@ export class BrandBriefsStack extends Stack {
       );
 
       // FIXME:
+      const getBrandBriefsLambdaDataSource = gqlApi.addLambdaDataSource(
+        "GetBrandBriefsLambdaDataSource",
+        Function.fromFunctionName(this, "getBrandBriefs", "getBrandBriefs"),
+      );
+      getBrandBriefsLambdaDataSource.createResolver("GetBrandBriefsResolver", {
+        typeName: "Query",
+        fieldName: "getBrandBriefs",
+        requestMappingTemplate: MappingTemplate.lambdaRequest(),
+        responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
+      });
+
       getCreatorBrandBriefsLDS.createResolver("getCreatorBrandBriefsResolver", {
         typeName: "Query",
         fieldName: "getCreatorBrandBriefs",

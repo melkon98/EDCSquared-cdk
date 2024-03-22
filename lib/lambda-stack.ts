@@ -420,6 +420,7 @@ export class LambdaStack extends Stack {
         BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
       },
     });
+    getBrandBriefs.addToRolePolicy(lambdaDynamodbDefaultPolicy);
 
     const getCampaignSpent = new lambda.Function(this, "getCampaignSpent", {
       code: Code.fromAsset(
