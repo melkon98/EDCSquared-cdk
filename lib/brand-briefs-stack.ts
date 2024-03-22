@@ -126,20 +126,6 @@ export class BrandBriefsStack extends Stack {
         ),
       });
 
-      const getBrandBriefs = gqlApi.addLambdaDataSource(
-        "getBrandBriefsLambdaDataSource",
-        Function.fromFunctionName(
-          this,
-          "getBrandBriefsLogicalId",
-          "getBrandBriefs",
-        ),
-      );
-
-      getBrandBriefs.createResolver("getBrandBriefsResolver", {
-        typeName: "Query",
-        fieldName: "getBrandBriefs",
-      });
-
       // Mutations:
       const fields = [
         "id",

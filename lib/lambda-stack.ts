@@ -58,6 +58,12 @@ export class LambdaStack extends Stack {
       }),
     );
 
+    const lambdaDynamodbDefaultPolicy = new PolicyStatement({
+      effect: Effect.ALLOW,
+      actions: ["dynamodb:*", "cloudwatch:*"],
+      resources: ["*"],
+    });
+
     const addCreativeEarning = new lambda.Function(this, "addCreativeEarning", {
       code: Code.fromAsset(
         path.join(
@@ -80,6 +86,7 @@ export class LambdaStack extends Stack {
         USER_WALLET_TABLE_NAME: USER_WALLETS_TABLE_NAME,
       },
     });
+    addCreativeEarning.addToRolePolicy(lambdaDynamodbDefaultPolicy);
 
     const sendEmailPolicy = new PolicyStatement({
       actions: ["ses:*"],
@@ -455,13 +462,7 @@ export class LambdaStack extends Stack {
       },
     );
 
-    getCreativeEarnings.addToRolePolicy(
-      new PolicyStatement({
-        effect: Effect.ALLOW,
-        actions: ["dynamodb:*"],
-        resources: ["*"],
-      }),
-    );
+    getCreativeEarnings.addToRolePolicy(lambdaDynamodbDefaultPolicy);
 
     const getCreativeEarningsByCreative = new lambda.Function(
       this,
@@ -485,6 +486,7 @@ export class LambdaStack extends Stack {
         },
       },
     );
+    getCreativeEarningsByCreative.addToRolePolicy(lambdaDynamodbDefaultPolicy);
 
     const getCreativeRequests = new lambda.Function(
       this,
@@ -946,6 +948,7 @@ export class LambdaStack extends Stack {
         REGION: ENVS.REGION,
       },
     });
+    videoPreviewUrl.addToRolePolicy(lambdaDynamodbDefaultPolicy);
 
     const validateTiktokAccess = new lambda.Function(
       this,

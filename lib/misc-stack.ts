@@ -1,5 +1,5 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import { GraphqlApi } from "aws-cdk-lib/aws-appsync";
+import { GraphqlApi, MappingTemplate } from "aws-cdk-lib/aws-appsync";
 import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 
@@ -73,6 +73,8 @@ export class MiscStack extends Stack {
     videoPreviewUrlDS.createResolver("videoPreviewUrlResolver", {
       typeName: "Mutation",
       fieldName: "videoPreviewUrl",
+      requestMappingTemplate: MappingTemplate.lambdaRequest(),
+      responseMappingTemplate: MappingTemplate.lambdaResult(),
     });
 
     const linkTiktokAccountDS = gqlApi.addLambdaDataSource(

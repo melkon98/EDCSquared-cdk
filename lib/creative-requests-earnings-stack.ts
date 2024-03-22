@@ -74,25 +74,25 @@ export class CreativeRequestEarningsStack extends Stack {
 
       // Mutations:
       // FIXME: Find request mapping template
-      const addCreativeEarningDS = gqlApi.addLambdaDataSource(
-        "addCreativeEarningLambdaDataSource",
+      const addCreativeEarningsLambdaDataSource = gqlApi.addLambdaDataSource(
+        "AddCreativeEarningsLambdaDataSource",
         lambda.Function.fromFunctionName(
           this,
-          "addCreativeEarningLogicalId",
+          "addCreativeEarning",
           "addCreativeEarning",
         ),
       );
-
-      creativeEarningsDS.createResolver("addCreativeEarningResolver", {
-        typeName: "Mutation",
-        fieldName: "addCreativeEarning",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeAddCreativeEarningLambdaDataSource.req.vtl",
-        ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
-        ),
-      });
+      addCreativeEarningsLambdaDataSource.createResolver(
+        "AddCreativeEarningsResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "addCreativeEarning",
+          requestMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeAddCreativeEarningLambdaDataSource.req.vtl",
+          ),
+          responseMappingTemplate: MappingTemplate.lambdaResult(),
+        },
+      );
 
       creativeEarningsDS.createResolver(
         "createCreativeRequestEarningsResolver",
