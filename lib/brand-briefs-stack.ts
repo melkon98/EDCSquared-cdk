@@ -1,10 +1,11 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import {
+  Assign,
+  AttributeValues,
   GraphqlApi,
   MappingTemplate,
   PrimaryKey,
   Resolver,
-  Values,
 } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Function } from "aws-cdk-lib/aws-lambda";
@@ -140,12 +141,38 @@ export class BrandBriefsStack extends Stack {
       });
 
       // Mutations:
+      const fields = [
+        "id",
+        "BriefName",
+        "vertical",
+        "objective",
+        "brandBriefDetails",
+        "brandBriefFilesUrl",
+        "creativeInspirations",
+        "active",
+        "tiktokAdvertiserId",
+        "brandId",
+        "adText",
+        "country",
+        "type",
+        "createdAt",
+        "updatedAt",
+        "tikTokData",
+        "metaData",
+        "youtubeData",
+        "manualData",
+        "creativeRequestsCount",
+      ];
       brandBriefsDS.createResolver("CreateBrandBriefResolver", {
         typeName: "Mutation",
         fieldName: "createBrandBrief",
         requestMappingTemplate: MappingTemplate.dynamoDbPutItem(
           PrimaryKey.partition("id").auto(),
-          Values.projecting("input"),
+          new AttributeValues("$ctx.args", [
+            ...fields.map((f) => new Assign(f, `$ctx.args.input.${f}`)),
+            new Assign("createdAt", "$util.time.nowISO8601()"),
+            new Assign("updatedAt", "$util.time.nowISO8601()"),
+          ]),
         ),
         responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
       });
