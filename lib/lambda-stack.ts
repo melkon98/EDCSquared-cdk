@@ -439,15 +439,14 @@ export class LambdaStack extends Stack {
         code: Code.fromAsset(
           path.join(
             __dirname,
-            "amplify-export-edcsquared/function/getCreativeEarnings/amplify-builds/getCreativeEarnings-55445470734e73755954-build.zip",
+            "amplify-export-edcsquared/function/getCreativeEarnings/amplify-builds/latest-build.zip",
           ),
         ),
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
         functionName: "getCreativeEarnings",
         environment: {
-          CREATIVE_REQUEST_EARNINGS_TABLE_NAME:
-            CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
+          CREATIVE_REQUESTS_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
           CREATIVE_REQUEST_EARNING_TABLE_NAME:
             CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
           USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
@@ -475,7 +474,7 @@ export class LambdaStack extends Stack {
             "amplify-export-edcsquared/function/getCreativeEarningsByCreative/amplify-builds/getCreativeEarningsByCreative-385133362f462f646c75-build.zip",
           ),
         ),
-        runtime: Runtime.NODEJS_LATEST,
+        runtime: Runtime.NODEJS_18_X,
         handler: "index.handler",
         functionName: "getCreativeEarningsByCreative",
         environment: {

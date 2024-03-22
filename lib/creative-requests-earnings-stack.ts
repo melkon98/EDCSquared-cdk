@@ -36,6 +36,10 @@ export class CreativeRequestEarningsStack extends Stack {
       getCreativeEarningDS.createResolver("getCreativeEarningsResolver", {
         typeName: "Query",
         fieldName: "getCreativeEarnings",
+        requestMappingTemplate: MappingTemplate.lambdaRequest(),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeEarnings.res.vtl",
+        ),
       });
 
       const getCreativeEarningsByCreativeDS = gqlApi.addLambdaDataSource(
