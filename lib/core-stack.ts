@@ -10,6 +10,7 @@ import { S3Stack } from "./s3-stack";
 config({ path: ".env" });
 
 export class CoreStack extends cdk.Stack {
+  public declare readonly env: Record<string, string>;
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, {
       ...props,
