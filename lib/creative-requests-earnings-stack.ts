@@ -82,6 +82,7 @@ export class CreativeRequestEarningsStack extends Stack {
           "addCreativeEarning",
         ),
       );
+
       addCreativeEarningsLambdaDataSource.createResolver(
         "AddCreativeEarningsResolver",
         {
@@ -90,7 +91,9 @@ export class CreativeRequestEarningsStack extends Stack {
           requestMappingTemplate: MappingTemplate.fromFile(
             "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeAddCreativeEarningLambdaDataSource.req.vtl",
           ),
-          responseMappingTemplate: MappingTemplate.lambdaResult(),
+          responseMappingTemplate: MappingTemplate.fromFile(
+            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.addCreativeEarning.res.vtl",
+          ),
         },
       );
 

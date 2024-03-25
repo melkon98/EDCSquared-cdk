@@ -34,7 +34,13 @@ export class S3Stack extends Stack {
       }),
     );
 
-    hostingBucket.grantPublicAccess();
+    hostingBucket.addToResourcePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["s3:GetObject", "s3:GetObjectAcl"],
+        resources: [`${hostingBucket.bucketName}/*`],
+      }),
+    );
 
     try {
       // const bucketExist = new CheckBucketExistenceLambdaStack(

@@ -317,6 +317,7 @@ export class LambdaStack extends Stack {
         },
       },
     );
+    creativeRequestUniqueId.addToRolePolicy(lambdaDynamodbDefaultPolicy);
 
     //TODO: Attach to cognito
     const edcsquared66ad360ePreSignup = new lambda.Function(

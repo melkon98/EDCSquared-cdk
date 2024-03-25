@@ -226,16 +226,13 @@ export class CreativeRequestStack extends Stack {
         },
       );
 
-      // Mutations:
       creativeRequestDS.createResolver("createCreativeRequestResolver", {
         typeName: "Mutation",
         fieldName: "createCreativeRequest",
         requestMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequest.req.vtl",
         ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequest.res.vtl",
-        ),
+        responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
       });
 
       creativeRequestDS.createResolver("updateCreativeRequestResolver", {
@@ -259,6 +256,46 @@ export class CreativeRequestStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.deleteCreativeRequest.res.vtl",
         ),
       });
+
+      const creativeRequestUniqueIdLambdaDataSource =
+        gqlApi.addLambdaDataSource(
+          "CreativeRequestUniqueIdLambdaDataSource",
+          Function.fromFunctionName(
+            this,
+            "creativeRequestUniqueId",
+            "creativeRequestUniqueId",
+          ),
+        );
+
+      creativeRequestUniqueIdLambdaDataSource.createResolver(
+        "CreativeRequestUniqueIdResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "creativeRequestUniqueId",
+          requestMappingTemplate: MappingTemplate.lambdaRequest(),
+          responseMappingTemplate: MappingTemplate.lambdaResult(),
+        },
+      );
+
+      const creativeRequestAuthorizationLambdaDataSource =
+        gqlApi.addLambdaDataSource(
+          "CreativeRequestAuthorizationLambdaDataSource",
+          Function.fromFunctionName(
+            this,
+            "creativeRequestAuthorization",
+            "creativeRequestAuthorization",
+          ),
+        );
+
+      creativeRequestAuthorizationLambdaDataSource.createResolver(
+        "CreativeRequestAuthorizationResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "creativeRequestAuthorization",
+          requestMappingTemplate: MappingTemplate.lambdaRequest(),
+          responseMappingTemplate: MappingTemplate.lambdaResult(),
+        },
+      );
 
       // Subscriptions:
       creativeRequestDS.createResolver("onCreateCreativeRequestResolver", {

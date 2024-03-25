@@ -8,7 +8,8 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
-export const creativeRequestUniqueId = /* GraphQL */ `mutation CreativeRequestUniqueId(
+export const creativeRequestUniqueId =
+  /* GraphQL */ `mutation CreativeRequestUniqueId(
   $brandBriefId: String
   $creativeRequestId: String
 ) {
@@ -18,17 +19,19 @@ export const creativeRequestUniqueId = /* GraphQL */ `mutation CreativeRequestUn
   )
 }
 ` as GeneratedMutation<
-  APITypes.CreativeRequestUniqueIdMutationVariables,
-  APITypes.CreativeRequestUniqueIdMutation
->;
-export const videoPreviewUrl = /* GraphQL */ `mutation VideoPreviewUrl($videoPath: String) {
+    APITypes.CreativeRequestUniqueIdMutationVariables,
+    APITypes.CreativeRequestUniqueIdMutation
+  >;
+export const videoPreviewUrl =
+  /* GraphQL */ `mutation VideoPreviewUrl($videoPath: String) {
   videoPreviewUrl(videoPath: $videoPath)
 }
 ` as GeneratedMutation<
-  APITypes.VideoPreviewUrlMutationVariables,
-  APITypes.VideoPreviewUrlMutation
->;
-export const creativeRequestAuthorization = /* GraphQL */ `mutation CreativeRequestAuthorization(
+    APITypes.VideoPreviewUrlMutationVariables,
+    APITypes.VideoPreviewUrlMutation
+  >;
+export const creativeRequestAuthorization =
+  /* GraphQL */ `mutation CreativeRequestAuthorization(
   $creativeRequestId: String
   $brandBriefId: String
   $advertiser_id: String
@@ -42,24 +45,27 @@ export const creativeRequestAuthorization = /* GraphQL */ `mutation CreativeRequ
   )
 }
 ` as GeneratedMutation<
-  APITypes.CreativeRequestAuthorizationMutationVariables,
-  APITypes.CreativeRequestAuthorizationMutation
->;
-export const linkTiktokAccount = /* GraphQL */ `mutation LinkTiktokAccount($authCode: String, $userProfileId: String) {
+    APITypes.CreativeRequestAuthorizationMutationVariables,
+    APITypes.CreativeRequestAuthorizationMutation
+  >;
+export const linkTiktokAccount =
+  /* GraphQL */ `mutation LinkTiktokAccount($authCode: String, $userProfileId: String) {
   linkTiktokAccount(authCode: $authCode, userProfileId: $userProfileId)
 }
 ` as GeneratedMutation<
-  APITypes.LinkTiktokAccountMutationVariables,
-  APITypes.LinkTiktokAccountMutation
->;
-export const linkCreatorTikTokAccount = /* GraphQL */ `mutation LinkCreatorTikTokAccount($authCode: String, $userProfileId: String) {
+    APITypes.LinkTiktokAccountMutationVariables,
+    APITypes.LinkTiktokAccountMutation
+  >;
+export const linkCreatorTikTokAccount =
+  /* GraphQL */ `mutation LinkCreatorTikTokAccount($authCode: String, $userProfileId: String) {
   linkCreatorTikTokAccount(authCode: $authCode, userProfileId: $userProfileId)
 }
 ` as GeneratedMutation<
-  APITypes.LinkCreatorTikTokAccountMutationVariables,
-  APITypes.LinkCreatorTikTokAccountMutation
->;
-export const linkCreatorInstagramAccount = /* GraphQL */ `mutation LinkCreatorInstagramAccount(
+    APITypes.LinkCreatorTikTokAccountMutationVariables,
+    APITypes.LinkCreatorTikTokAccountMutation
+  >;
+export const linkCreatorInstagramAccount =
+  /* GraphQL */ `mutation LinkCreatorInstagramAccount(
   $authCode: String
   $userProfileId: String
 ) {
@@ -69,44 +75,49 @@ export const linkCreatorInstagramAccount = /* GraphQL */ `mutation LinkCreatorIn
   )
 }
 ` as GeneratedMutation<
-  APITypes.LinkCreatorInstagramAccountMutationVariables,
-  APITypes.LinkCreatorInstagramAccountMutation
->;
-export const linkFacebookAccount = /* GraphQL */ `mutation LinkFacebookAccount($authCode: String, $userProfileId: String) {
+    APITypes.LinkCreatorInstagramAccountMutationVariables,
+    APITypes.LinkCreatorInstagramAccountMutation
+  >;
+export const linkFacebookAccount =
+  /* GraphQL */ `mutation LinkFacebookAccount($authCode: String, $userProfileId: String) {
   linkFacebookAccount(authCode: $authCode, userProfileId: $userProfileId)
 }
 ` as GeneratedMutation<
-  APITypes.LinkFacebookAccountMutationVariables,
-  APITypes.LinkFacebookAccountMutation
->;
-export const linkYoutubeAccount = /* GraphQL */ `mutation LinkYoutubeAccount($authCode: String, $userProfileId: String) {
+    APITypes.LinkFacebookAccountMutationVariables,
+    APITypes.LinkFacebookAccountMutation
+  >;
+export const linkYoutubeAccount =
+  /* GraphQL */ `mutation LinkYoutubeAccount($authCode: String, $userProfileId: String) {
   linkYoutubeAccount(authCode: $authCode, userProfileId: $userProfileId)
 }
 ` as GeneratedMutation<
-  APITypes.LinkYoutubeAccountMutationVariables,
-  APITypes.LinkYoutubeAccountMutation
->;
-export const linkCreatorYoutubeAccount = /* GraphQL */ `mutation LinkCreatorYoutubeAccount($authCode: String, $userProfileId: String) {
+    APITypes.LinkYoutubeAccountMutationVariables,
+    APITypes.LinkYoutubeAccountMutation
+  >;
+export const linkCreatorYoutubeAccount =
+  /* GraphQL */ `mutation LinkCreatorYoutubeAccount($authCode: String, $userProfileId: String) {
   linkCreatorYoutubeAccount(authCode: $authCode, userProfileId: $userProfileId)
 }
 ` as GeneratedMutation<
-  APITypes.LinkCreatorYoutubeAccountMutationVariables,
-  APITypes.LinkCreatorYoutubeAccountMutation
->;
-export const validateTiktokAccess = /* GraphQL */ `mutation ValidateTiktokAccess($accessToken: String) {
+    APITypes.LinkCreatorYoutubeAccountMutationVariables,
+    APITypes.LinkCreatorYoutubeAccountMutation
+  >;
+export const validateTiktokAccess =
+  /* GraphQL */ `mutation ValidateTiktokAccess($accessToken: String) {
   validateTiktokAccess(accessToken: $accessToken)
 }
 ` as GeneratedMutation<
-  APITypes.ValidateTiktokAccessMutationVariables,
-  APITypes.ValidateTiktokAccessMutation
->;
-export const linkUserType = /* GraphQL */ `mutation LinkUserType($userType: String, $profileId: String) {
+    APITypes.ValidateTiktokAccessMutationVariables,
+    APITypes.ValidateTiktokAccessMutation
+  >;
+export const linkUserType =
+  /* GraphQL */ `mutation LinkUserType($userType: String, $profileId: String) {
   linkUserType(userType: $userType, profileId: $profileId)
 }
 ` as GeneratedMutation<
-  APITypes.LinkUserTypeMutationVariables,
-  APITypes.LinkUserTypeMutation
->;
+    APITypes.LinkUserTypeMutationVariables,
+    APITypes.LinkUserTypeMutation
+  >;
 export const createAds = /* GraphQL */ `mutation CreateAds(
   $token: String
   $authCode: String
@@ -167,13 +178,14 @@ export const createMetaAd = /* GraphQL */ `mutation CreateMetaAd(
   APITypes.CreateMetaAdMutationVariables,
   APITypes.CreateMetaAdMutation
 >;
-export const createManualAd = /* GraphQL */ `mutation CreateManualAd($creativeRequestId: String!) {
+export const createManualAd =
+  /* GraphQL */ `mutation CreateManualAd($creativeRequestId: String!) {
   createManualAd(creativeRequestId: $creativeRequestId)
 }
 ` as GeneratedMutation<
-  APITypes.CreateManualAdMutationVariables,
-  APITypes.CreateManualAdMutation
->;
+    APITypes.CreateManualAdMutationVariables,
+    APITypes.CreateManualAdMutation
+  >;
 export const listAdGroups = /* GraphQL */ `mutation ListAdGroups(
   $token: String
   $advertiser_id: String
@@ -189,31 +201,35 @@ export const listAdGroups = /* GraphQL */ `mutation ListAdGroups(
   APITypes.ListAdGroupsMutationVariables,
   APITypes.ListAdGroupsMutation
 >;
-export const listCampaigns = /* GraphQL */ `mutation ListCampaigns($token: String, $advertiser_id: String) {
+export const listCampaigns =
+  /* GraphQL */ `mutation ListCampaigns($token: String, $advertiser_id: String) {
   listCampaigns(token: $token, advertiser_id: $advertiser_id)
 }
 ` as GeneratedMutation<
-  APITypes.ListCampaignsMutationVariables,
-  APITypes.ListCampaignsMutation
->;
-export const getFacebookCampaign = /* GraphQL */ `mutation GetFacebookCampaign($access_token: String, $advertiser_id: String) {
+    APITypes.ListCampaignsMutationVariables,
+    APITypes.ListCampaignsMutation
+  >;
+export const getFacebookCampaign =
+  /* GraphQL */ `mutation GetFacebookCampaign($access_token: String, $advertiser_id: String) {
   getFacebookCampaign(
     access_token: $access_token
     advertiser_id: $advertiser_id
   )
 }
 ` as GeneratedMutation<
-  APITypes.GetFacebookCampaignMutationVariables,
-  APITypes.GetFacebookCampaignMutation
->;
-export const getFacebookAdSets = /* GraphQL */ `mutation GetFacebookAdSets($access_token: String, $campaign_id: String) {
+    APITypes.GetFacebookCampaignMutationVariables,
+    APITypes.GetFacebookCampaignMutation
+  >;
+export const getFacebookAdSets =
+  /* GraphQL */ `mutation GetFacebookAdSets($access_token: String, $campaign_id: String) {
   getFacebookAdSets(access_token: $access_token, campaign_id: $campaign_id)
 }
 ` as GeneratedMutation<
-  APITypes.GetFacebookAdSetsMutationVariables,
-  APITypes.GetFacebookAdSetsMutation
->;
-export const getVideoFromAuthCode = /* GraphQL */ `mutation GetVideoFromAuthCode(
+    APITypes.GetFacebookAdSetsMutationVariables,
+    APITypes.GetFacebookAdSetsMutation
+  >;
+export const getVideoFromAuthCode =
+  /* GraphQL */ `mutation GetVideoFromAuthCode(
   $token: String
   $advertiser_id: String
   $authCode: String
@@ -225,14 +241,14 @@ export const getVideoFromAuthCode = /* GraphQL */ `mutation GetVideoFromAuthCode
   )
 }
 ` as GeneratedMutation<
-  APITypes.GetVideoFromAuthCodeMutationVariables,
-  APITypes.GetVideoFromAuthCodeMutation
->;
+    APITypes.GetVideoFromAuthCodeMutationVariables,
+    APITypes.GetVideoFromAuthCodeMutation
+  >;
 export const addCreativeEarning = /* GraphQL */ `mutation AddCreativeEarning(
   $userProfileId: String!
   $creativeRequestId: String!
   $amount: Float!
-  $month: Months!
+  $month: String!
   $toDate: AWSDateTime!
   $fromDate: AWSDateTime!
 ) {
@@ -758,7 +774,8 @@ export const deleteUserProfile = /* GraphQL */ `mutation DeleteUserProfile(
   APITypes.DeleteUserProfileMutationVariables,
   APITypes.DeleteUserProfileMutation
 >;
-export const createUserPaymentDetails = /* GraphQL */ `mutation CreateUserPaymentDetails(
+export const createUserPaymentDetails =
+  /* GraphQL */ `mutation CreateUserPaymentDetails(
   $input: CreateUserPaymentDetailsInput!
   $condition: ModelUserPaymentDetailsConditionInput
 ) {
@@ -795,10 +812,11 @@ export const createUserPaymentDetails = /* GraphQL */ `mutation CreateUserPaymen
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateUserPaymentDetailsMutationVariables,
-  APITypes.CreateUserPaymentDetailsMutation
->;
-export const updateUserPaymentDetails = /* GraphQL */ `mutation UpdateUserPaymentDetails(
+    APITypes.CreateUserPaymentDetailsMutationVariables,
+    APITypes.CreateUserPaymentDetailsMutation
+  >;
+export const updateUserPaymentDetails =
+  /* GraphQL */ `mutation UpdateUserPaymentDetails(
   $input: UpdateUserPaymentDetailsInput!
   $condition: ModelUserPaymentDetailsConditionInput
 ) {
@@ -835,10 +853,11 @@ export const updateUserPaymentDetails = /* GraphQL */ `mutation UpdateUserPaymen
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateUserPaymentDetailsMutationVariables,
-  APITypes.UpdateUserPaymentDetailsMutation
->;
-export const deleteUserPaymentDetails = /* GraphQL */ `mutation DeleteUserPaymentDetails(
+    APITypes.UpdateUserPaymentDetailsMutationVariables,
+    APITypes.UpdateUserPaymentDetailsMutation
+  >;
+export const deleteUserPaymentDetails =
+  /* GraphQL */ `mutation DeleteUserPaymentDetails(
   $input: DeleteUserPaymentDetailsInput!
   $condition: ModelUserPaymentDetailsConditionInput
 ) {
@@ -875,9 +894,9 @@ export const deleteUserPaymentDetails = /* GraphQL */ `mutation DeleteUserPaymen
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteUserPaymentDetailsMutationVariables,
-  APITypes.DeleteUserPaymentDetailsMutation
->;
+    APITypes.DeleteUserPaymentDetailsMutationVariables,
+    APITypes.DeleteUserPaymentDetailsMutation
+  >;
 export const updateUserWallet = /* GraphQL */ `mutation UpdateUserWallet(
   $input: UpdateUserWalletInput!
   $condition: ModelUserWalletConditionInput
@@ -900,7 +919,8 @@ export const updateUserWallet = /* GraphQL */ `mutation UpdateUserWallet(
   APITypes.UpdateUserWalletMutationVariables,
   APITypes.UpdateUserWalletMutation
 >;
-export const createUserTransactions = /* GraphQL */ `mutation CreateUserTransactions(
+export const createUserTransactions =
+  /* GraphQL */ `mutation CreateUserTransactions(
   $input: CreateUserTransactionsInput!
   $condition: ModelUserTransactionsConditionInput
 ) {
@@ -918,10 +938,11 @@ export const createUserTransactions = /* GraphQL */ `mutation CreateUserTransact
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateUserTransactionsMutationVariables,
-  APITypes.CreateUserTransactionsMutation
->;
-export const updateUserTransactions = /* GraphQL */ `mutation UpdateUserTransactions(
+    APITypes.CreateUserTransactionsMutationVariables,
+    APITypes.CreateUserTransactionsMutation
+  >;
+export const updateUserTransactions =
+  /* GraphQL */ `mutation UpdateUserTransactions(
   $input: UpdateUserTransactionsInput!
   $condition: ModelUserTransactionsConditionInput
 ) {
@@ -939,10 +960,11 @@ export const updateUserTransactions = /* GraphQL */ `mutation UpdateUserTransact
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateUserTransactionsMutationVariables,
-  APITypes.UpdateUserTransactionsMutation
->;
-export const deleteUserTransactions = /* GraphQL */ `mutation DeleteUserTransactions(
+    APITypes.UpdateUserTransactionsMutationVariables,
+    APITypes.UpdateUserTransactionsMutation
+  >;
+export const deleteUserTransactions =
+  /* GraphQL */ `mutation DeleteUserTransactions(
   $input: DeleteUserTransactionsInput!
   $condition: ModelUserTransactionsConditionInput
 ) {
@@ -960,9 +982,9 @@ export const deleteUserTransactions = /* GraphQL */ `mutation DeleteUserTransact
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteUserTransactionsMutationVariables,
-  APITypes.DeleteUserTransactionsMutation
->;
+    APITypes.DeleteUserTransactionsMutationVariables,
+    APITypes.DeleteUserTransactionsMutation
+  >;
 export const createApprovedAds = /* GraphQL */ `mutation CreateApprovedAds(
   $input: CreateApprovedAdsInput!
   $condition: ModelApprovedAdsConditionInput
@@ -2259,7 +2281,8 @@ export const deleteBrandBrief = /* GraphQL */ `mutation DeleteBrandBrief(
   APITypes.DeleteBrandBriefMutationVariables,
   APITypes.DeleteBrandBriefMutation
 >;
-export const createCreativeRequest = /* GraphQL */ `mutation CreateCreativeRequest(
+export const createCreativeRequest =
+  /* GraphQL */ `mutation CreateCreativeRequest(
   $input: CreateCreativeRequestInput!
   $condition: ModelCreativeRequestConditionInput
 ) {
@@ -2467,10 +2490,11 @@ export const createCreativeRequest = /* GraphQL */ `mutation CreateCreativeReque
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateCreativeRequestMutationVariables,
-  APITypes.CreateCreativeRequestMutation
->;
-export const updateCreativeRequest = /* GraphQL */ `mutation UpdateCreativeRequest(
+    APITypes.CreateCreativeRequestMutationVariables,
+    APITypes.CreateCreativeRequestMutation
+  >;
+export const updateCreativeRequest =
+  /* GraphQL */ `mutation UpdateCreativeRequest(
   $input: UpdateCreativeRequestInput!
   $condition: ModelCreativeRequestConditionInput
 ) {
@@ -2678,10 +2702,11 @@ export const updateCreativeRequest = /* GraphQL */ `mutation UpdateCreativeReque
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateCreativeRequestMutationVariables,
-  APITypes.UpdateCreativeRequestMutation
->;
-export const deleteCreativeRequest = /* GraphQL */ `mutation DeleteCreativeRequest(
+    APITypes.UpdateCreativeRequestMutationVariables,
+    APITypes.UpdateCreativeRequestMutation
+  >;
+export const deleteCreativeRequest =
+  /* GraphQL */ `mutation DeleteCreativeRequest(
   $input: DeleteCreativeRequestInput!
   $condition: ModelCreativeRequestConditionInput
 ) {
@@ -2889,10 +2914,11 @@ export const deleteCreativeRequest = /* GraphQL */ `mutation DeleteCreativeReque
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteCreativeRequestMutationVariables,
-  APITypes.DeleteCreativeRequestMutation
->;
-export const createCreativeRequestEarnings = /* GraphQL */ `mutation CreateCreativeRequestEarnings(
+    APITypes.DeleteCreativeRequestMutationVariables,
+    APITypes.DeleteCreativeRequestMutation
+  >;
+export const createCreativeRequestEarnings =
+  /* GraphQL */ `mutation CreateCreativeRequestEarnings(
   $input: CreateCreativeRequestEarningsInput!
   $condition: ModelCreativeRequestEarningsConditionInput
 ) {
@@ -2912,10 +2938,11 @@ export const createCreativeRequestEarnings = /* GraphQL */ `mutation CreateCreat
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateCreativeRequestEarningsMutationVariables,
-  APITypes.CreateCreativeRequestEarningsMutation
->;
-export const updateCreativeRequestEarnings = /* GraphQL */ `mutation UpdateCreativeRequestEarnings(
+    APITypes.CreateCreativeRequestEarningsMutationVariables,
+    APITypes.CreateCreativeRequestEarningsMutation
+  >;
+export const updateCreativeRequestEarnings =
+  /* GraphQL */ `mutation UpdateCreativeRequestEarnings(
   $input: UpdateCreativeRequestEarningsInput!
   $condition: ModelCreativeRequestEarningsConditionInput
 ) {
@@ -2935,10 +2962,11 @@ export const updateCreativeRequestEarnings = /* GraphQL */ `mutation UpdateCreat
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateCreativeRequestEarningsMutationVariables,
-  APITypes.UpdateCreativeRequestEarningsMutation
->;
-export const deleteCreativeRequestEarnings = /* GraphQL */ `mutation DeleteCreativeRequestEarnings(
+    APITypes.UpdateCreativeRequestEarningsMutationVariables,
+    APITypes.UpdateCreativeRequestEarningsMutation
+  >;
+export const deleteCreativeRequestEarnings =
+  /* GraphQL */ `mutation DeleteCreativeRequestEarnings(
   $input: DeleteCreativeRequestEarningsInput!
   $condition: ModelCreativeRequestEarningsConditionInput
 ) {
@@ -2958,6 +2986,6 @@ export const deleteCreativeRequestEarnings = /* GraphQL */ `mutation DeleteCreat
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteCreativeRequestEarningsMutationVariables,
-  APITypes.DeleteCreativeRequestEarningsMutation
->;
+    APITypes.DeleteCreativeRequestEarningsMutationVariables,
+    APITypes.DeleteCreativeRequestEarningsMutation
+  >;
