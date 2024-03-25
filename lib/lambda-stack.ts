@@ -212,31 +212,39 @@ export class LambdaStack extends Stack {
       },
     });
 
-    // const creativeRequestAuthorization = new lambda.Function(
-    //   this,
-    //   "creativeRequestAuthorization",
-    //   {
-    //     code: Code.fromAsset(
-    //       path.join(
-    //         __dirname,
-    //         "amplify-export-edcsquared/function/creativeRequestAuthorization/amplify-builds/creativeRequestAuthorization-7858454e38796d657939-build.zip ",
-    //       ),
-    //     ),
-    //     runtime: Runtime.NODEJS_LATEST,
-    //     handler: "index.handler",
-    //     functionName: "creativeRequestAuthorization",
-    //     environment: {
-    //       ENV: ENVS.ENV,
-    //       REGION: ENVS.REGION,
-    //       TKTOK_BUSNS_API_BASE_URL: ENVS.TIKTOK_BUSINESS_API_BASE_URL,
-    //       USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
-    //       CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
-    //       CREATIVES_BUCKET: STATIC_STORAGE_BUCKET,
-    //       BRAND_PROFILE_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
-    //       BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
-    //     },
-    //   },
-    // );
+    const creativeRequestAuthorization = new lambda.Function(
+      this,
+      "creativeRequestAuthorization",
+      {
+        code: Code.fromAsset(
+          path.join(
+            __dirname,
+            "amplify-export-edcsquared/function/creativeRequestAuthorization/amplify-builds/creativeRequestAuthorization-7858454e38796d657939-build.zip",
+          ),
+        ),
+        runtime: Runtime.NODEJS_LATEST,
+        handler: "index.handler",
+        functionName: "creativeRequestAuthorization",
+        environment: {
+          ENV: ENVS.ENV,
+          REGION: ENVS.REGION,
+          TKTOK_BUSNS_API_BASE_URL: ENVS.TIKTOK_BUSINESS_API_BASE_URL,
+          USER_PROFILE_TABLE_NAME: USER_PROFILES_TABLE_NAME,
+          CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
+          CREATIVES_BUCKET: STATIC_STORAGE_BUCKET,
+          BRAND_PROFILE_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
+          BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
+        },
+      },
+    );
+    creativeRequestAuthorization.addToRolePolicy(lambdaDynamodbDefaultPolicy);
+    creativeRequestAuthorization.addToRolePolicy(
+      new PolicyStatement({
+        effect: Effect.ALLOW,
+        actions: ["s3:*"],
+        resources: ["*"],
+      }),
+    );
 
     const creativeRequestsByCreator = new lambda.Function(
       this,
