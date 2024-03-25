@@ -13,7 +13,7 @@ export class CoreStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, {
       ...props,
-      env: { region: "us-east-1", account: "995966967167" },
+      env: { region: process.env.REGION, account: process.env.ACCOUNT_ID },
     });
 
     const cognito = new CognitoStack(this, "CognitoStack");
