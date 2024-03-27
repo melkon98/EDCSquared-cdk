@@ -59,6 +59,30 @@ export class MiscStack extends Stack {
       fieldName: "getGPTresponse",
     });
 
+    const creativeRequestStatusEmailLambdaDataSource =
+      gqlApi.addLambdaDataSource(
+        "CreativeRequestStatusEmailLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "creativeRequestStatusEmail",
+          "creativeRequestStatusEmail",
+        ),
+      );
+
+    creativeRequestStatusEmailLambdaDataSource.createResolver(
+      "CreativeRequestStatusEmailResolver",
+      {
+        typeName: "Query",
+        fieldName: "creativeRequestStatusEmail",
+        requestMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeCreativeRequestStatusEmailLambdaDataSource.req.vtl",
+        ),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.creativeRequestStatusEmail.res.vtl",
+        ),
+      },
+    );
+
     // Mutations:
 
     const videoPreviewUrlDS = gqlApi.addLambdaDataSource(
