@@ -226,13 +226,15 @@ export class CreativeRequestStack extends Stack {
         },
       );
 
-      creativeRequestDS.createResolver("createCreativeRequestResolver", {
+      creativeRequestDS.createResolver("CreateCreativeRequestResolver", {
         typeName: "Mutation",
         fieldName: "createCreativeRequest",
         requestMappingTemplate: MappingTemplate.fromFile(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequest.req.vtl",
         ),
-        responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
+        responseMappingTemplate: MappingTemplate.fromFile(
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequest.req.vtl",
+        ),
       });
 
       creativeRequestDS.createResolver("updateCreativeRequestResolver", {
