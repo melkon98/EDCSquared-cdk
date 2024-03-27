@@ -63,6 +63,26 @@ export class BrandProfilesStack extends Stack {
         ),
       });
 
+      const getBrandProfileByUserIdLambdaDataSource =
+        gqlApi.addLambdaDataSource(
+          "getBrandProfileByUserIdLambdaDataSource",
+          Function.fromFunctionName(
+            this,
+            "getBrandProfileByUserId",
+            "getBrandProfileByUserId",
+          ),
+        );
+
+      getBrandProfileByUserIdLambdaDataSource.createResolver(
+        "GetBrandProfileByUserId",
+        {
+          typeName: "Query",
+          fieldName: "getBrandProfileByUserId",
+          requestMappingTemplate: MappingTemplate.lambdaRequest(),
+          responseMappingTemplate: MappingTemplate.lambdaResult(),
+        },
+      );
+
       // Mutations:
       const emptyDS = gqlApi.addNoneDataSource("createBrandProfileEmptyDS");
       const data = [
