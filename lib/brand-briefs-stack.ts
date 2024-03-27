@@ -124,9 +124,7 @@ export class BrandBriefsStack extends Stack {
         ),
       });
 
-      new Resolver(this, "brandBriefByDateResolver", {
-        api: gqlApi,
-        dataSource: brandBriefsDS,
+      brandBriefsDS.createResolver("brandBriefByDateResolver", {
         typeName: "Query",
         fieldName: "brandBriefByDate",
         requestMappingTemplate: MappingTemplate.fromFile(
