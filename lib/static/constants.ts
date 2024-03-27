@@ -262,3 +262,4 @@ export const CREATE_BRAND_BRIEF_PROFILE_POST_AUTH_0_FUNCTION_REQUEST_MAPPING_TEM
   ## [End] Initialization default values. **`;
 
 export const PARSE_JSON_VTL_TEMPLATE = "$util.toJson({})";
+export const LAMBDA_DEFAULT_TIMEOUT_IN_SECONDS = 25;

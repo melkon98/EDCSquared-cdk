@@ -26,6 +26,7 @@ import {
   EXCHANGE_API_BASE_URL,
   FIFTEEN_MINUTES_IN_SECONDS,
   INSTAGRAM_URL,
+  LAMBDA_DEFAULT_TIMEOUT_IN_SECONDS,
   LINKEDIN_URL,
   LOGIN_PAGE_URL,
   MAILER_EMAIL,
@@ -979,6 +980,21 @@ export class LambdaStack extends Stack {
             "https://business-api.tiktok.com/open_api/v1.3/oauth2/advertiser/get",
           TKTOK_SECRET,
         },
+      },
+    );
+
+    const getBrandProfileByUserId = new lambda.Function(
+      this,
+      "getBrandProfileByUserId",
+      {
+        timeout: Duration.seconds(LAMBDA_DEFAULT_TIMEOUT_IN_SECONDS),
+        runtime: Runtime.NODEJS_20_X,
+        handler: "index.handler",
+        functionName: "getBrandProfileByUserId",
+        environment: {
+          BRAND_PROFILES_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
+        },
+        code: Code.fromAsset("lib/functions/get-brand-profile-by-user-id"),
       },
     );
   }
