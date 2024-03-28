@@ -503,17 +503,17 @@ export class LambdaStack extends Stack {
       this,
       "getCreativeRequests",
       {
-        code: Code.fromAsset(
-          "lib/functions/getCreativeRequests/build/latest-build.zip",
-        ),
         runtime: Runtime.NODEJS_LATEST,
-        handler: "index.handler",
+        handler: "src/index.handler",
         functionName: "getCreativeRequests",
         environment: {
           CREATIVE_REQUEST_TABLE_NAME: CREATIVE_REQUESTS_TABLE_NAME,
           BRAND_BRIEF_TABLE_NAME: BRAND_BRIEFS_TABLE_NAME,
           BRAND_BREIFS_BY_BRAND_ID_INDEX: BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
         },
+        code: Code.fromAsset(
+          "lib/functions/getCreativeRequests/build/latest-build.zip",
+        ),
       },
     );
     getCreativeRequests.addToRolePolicy(
@@ -990,7 +990,9 @@ export class LambdaStack extends Stack {
         environment: {
           BRAND_PROFILES_TABLE_NAME: BRAND_PROFILE_TABLE_NAME,
         },
-        code: Code.fromAsset("lib/functions/get-brand-profile-by-user-id"),
+        code: Code.fromAsset(
+          "lib/functions/getBrandProfileByBrandId/build/latest-build.zip",
+        ),
       },
     );
 

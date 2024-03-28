@@ -1,1 +1,1 @@
-export * from "./CheckIfBucketExists/check-if-bucket-exits-stack";
+export * from "./checkIfBucketExists/check-if-bucket-exits-stack";
