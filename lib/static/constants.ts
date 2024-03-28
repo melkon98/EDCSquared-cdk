@@ -263,3 +263,26 @@ export const CREATE_BRAND_BRIEF_PROFILE_POST_AUTH_0_FUNCTION_REQUEST_MAPPING_TEM
 
 export const PARSE_JSON_VTL_TEMPLATE = "$util.toJson({})";
 export const LAMBDA_DEFAULT_TIMEOUT_IN_SECONDS = 25;
+
+export const CREATE_USER_FIELDS = [
+  "avatar",
+  "country",
+  "description",
+  "email",
+  "facebookAccountAccess",
+  "hashtags",
+  "id",
+  "instagramHandler",
+  "lastLoginDate",
+  "name",
+  "owner",
+  "phoneNumber",
+  "profileContent",
+  "termsAndConditions",
+  "tiktokAccountAccess",
+  "tiktokHandler",
+
+  "vertical",
+  "youtubeAccountAccess",
+  "youtubeHandler",
+];

@@ -504,10 +504,7 @@ export class LambdaStack extends Stack {
       "getCreativeRequests",
       {
         code: Code.fromAsset(
-          path.join(
-            __dirname,
-            "amplify-export-edcsquared/function/getCreativeRequests/amplify-builds/latest-build.zip",
-          ),
+          "lib/amplify-export-edcsquared/function/getCreativeRequests/amplify-builds/latest-build.zip",
         ),
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",
@@ -534,8 +531,7 @@ export class LambdaStack extends Stack {
         code: Code.fromAsset(
           path.join(
             __dirname,
-
-            "amplify-export-edcsquared/function/getCreativeRequestsCountByBrandId/amplify-builds/getCreativeRequestsCountByBrandId-5032326476556c506d30-build.zip",
+            "amplify-export-edcsquared/function/getCreativeRequestsCountByBrandId/amplify-builds/latest-build.zip",
           ),
         ),
         runtime: Runtime.NODEJS_LATEST,

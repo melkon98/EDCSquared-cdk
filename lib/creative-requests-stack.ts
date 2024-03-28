@@ -35,11 +35,11 @@ export class CreativeRequestStack extends Stack {
       getCreativeRequestsLDS.createResolver("getCreativeRequestsResolver", {
         typeName: "Query",
         fieldName: "getCreativeRequests",
-        requestMappingTemplate: MappingTemplate.fromFile(
+        requestMappingTemplate: MappingTemplate.lambdaRequest(
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsLambdaDataSource.req.vtl",
         ),
         responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsLambdaDataSource.res.vtl",
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequests.res.vtl",
         ),
       });
 
@@ -57,12 +57,8 @@ export class CreativeRequestStack extends Stack {
         {
           typeName: "Query",
           fieldName: "getCreativeRequestsCount",
-          requestMappingTemplate: MappingTemplate.fromString(
-            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsCountByBrandIdLambdaDataSource.req.vtl",
-          ),
-          responseMappingTemplate: MappingTemplate.fromString(
-            "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequestsCount.res.vtl",
-          ),
+          requestMappingTemplate: MappingTemplate.lambdaRequest(),
+          responseMappingTemplate: MappingTemplate.lambdaResult(),
         },
       );
 
@@ -233,7 +229,7 @@ export class CreativeRequestStack extends Stack {
           "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequest.req.vtl",
         ),
         responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequest.req.vtl",
+          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createCreativeRequest.res.vtl",
         ),
       });
 
