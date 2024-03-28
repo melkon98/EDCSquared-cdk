@@ -504,7 +504,7 @@ export class LambdaStack extends Stack {
       "getCreativeRequests",
       {
         code: Code.fromAsset(
-          "lib/amplify-export-edcsquared/function/getCreativeRequests/amplify-builds/latest-build.zip",
+          "lib/functions/getCreativeRequests/build/latest-build.zip",
         ),
         runtime: Runtime.NODEJS_LATEST,
         handler: "index.handler",

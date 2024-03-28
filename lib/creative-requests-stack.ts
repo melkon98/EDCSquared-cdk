@@ -24,24 +24,24 @@ export class CreativeRequestStack extends Stack {
     );
 
     try {
-      const getCreativeRequestsLDS = gqlApi.addLambdaDataSource(
-        "getCreativeRequestsLDS",
+      const getCreativeRequestsLambdaDataSource = gqlApi.addLambdaDataSource(
+        "GetCreativeRequestsLambdaDataSource",
         Function.fromFunctionName(
           this,
-          "getCreativeRequestsLID",
+          "getCreativeRequests",
           "getCreativeRequests",
         ),
       );
-      getCreativeRequestsLDS.createResolver("getCreativeRequestsResolver", {
-        typeName: "Query",
-        fieldName: "getCreativeRequests",
-        requestMappingTemplate: MappingTemplate.lambdaRequest(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/InvokeGetCreativeRequestsLambdaDataSource.req.vtl",
-        ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Query.getCreativeRequests.res.vtl",
-        ),
-      });
+
+      getCreativeRequestsLambdaDataSource.createResolver(
+        "GetCreativeRequestsResolver",
+        {
+          typeName: "Query",
+          fieldName: "getCreativeRequests",
+          requestMappingTemplate: MappingTemplate.lambdaRequest(),
+          responseMappingTemplate: MappingTemplate.lambdaResult(),
+        },
+      );
 
       const getCreativeRequestsCountByBrandId = gqlApi.addLambdaDataSource(
         "getCreativeRequestsCountByBrandIdLDS",
