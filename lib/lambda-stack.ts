@@ -993,5 +993,21 @@ export class LambdaStack extends Stack {
         code: Code.fromAsset("lib/functions/get-brand-profile-by-user-id"),
       },
     );
+
+    const createUserProfile = new lambda.Function(this, "createUserProfile", {
+      timeout: Duration.seconds(LAMBDA_DEFAULT_TIMEOUT_IN_SECONDS),
+      runtime: Runtime.NODEJS_20_X,
+      handler: "src/index.handler",
+      functionName: "createUserProfile",
+      environment: {
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        USER_PROFILES_TABLE_NAME,
+      },
+      code: Code.fromAsset(
+        "lib/functions/createUserProfile/build/latest-build.zip",
+      ),
+    });
+    createUserProfile.addToRolePolicy(lambdaDynamodbDefaultPolicy);
   }
 }

@@ -1,0 +1,86 @@
+{
+  "arguments": {
+    "input": {
+      "id": "d4e8f74d-f700-4e0f-b85d-c942c70ba2d6",
+      "name": "test user 5",
+      "email": "melkon+122333@edcsquared.io"
+    },
+    "condition": null
+  },
+  "identity": {
+    "claims": {
+      "sub": "d4e8f74d-f700-4e0f-b85d-c942c70ba2d6",
+      "email_verified": true,
+      "iss": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_auCDskee6",
+      "cognito:username": "d4e8f74d-f700-4e0f-b85d-c942c70ba2d6",
+      "origin_jti": "d5ef44c9-dd20-49bf-b074-b681bd660076",
+      "aud": "5ne289haqgk9a9k90c0bvltf84",
+      "event_id": "a251a694-107f-4ba1-b168-3cea6addf53c",
+      "token_use": "id",
+      "auth_time": 1711619291,
+      "name": "test user 5",
+      "exp": 1711622891,
+      "iat": 1711619291,
+      "family_name": "test user 5",
+      "jti": "8f944b8f-ea34-4832-ab9f-e6de6d0d00fd",
+      "email": "melkon+122333@edcsquared.io"
+    },
+    "defaultAuthStrategy": "DENY",
+    "groups": null,
+    "issuer": "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_auCDskee6",
+    "sourceIp": ["37.252.90.219"],
+    "sub": "d4e8f74d-f700-4e0f-b85d-c942c70ba2d6",
+    "username": "d4e8f74d-f700-4e0f-b85d-c942c70ba2d6"
+  },
+  "source": null,
+  "result": null,
+  "request": {
+    "headers": {
+      "x-forwarded-for": "37.252.90.219, 18.68.8.70",
+      "sec-ch-ua-mobile": "?0",
+      "cloudfront-viewer-country": "AM",
+      "cloudfront-is-tablet-viewer": "false",
+      "x-amzn-requestid": "1104d8d6-f245-465e-bd49-ec210050c110",
+      "via": "2.0 15236b442dadb214143f297473d37824.cloudfront.net (CloudFront)",
+      "cloudfront-forwarded-proto": "https",
+      "origin": "http://localhost:3000",
+      "content-length": "2852",
+      "x-forwarded-proto": "https",
+      "accept-language": "en-US,en;q=0.9",
+      "host": "d32xpwerazcrzaauwxlxxqawbu.appsync-api.us-east-1.amazonaws.com",
+      "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+      "cloudfront-is-mobile-viewer": "false",
+      "accept": "*/*",
+      "cloudfront-viewer-asn": "44395",
+      "cloudfront-is-smarttv-viewer": "false",
+      "x-amzn-appsync-is-vpce-request": "false",
+      "accept-encoding": "gzip, deflate, br",
+      "referer": "http://localhost:3000/",
+      "x-amzn-remote-ip": "37.252.90.219",
+      "content-type": "application/json",
+      "sec-fetch-mode": "cors",
+      "x-amzn-trace-id": "Root=1-66054975-20a2d7f07a3e40737e20b3a5",
+      "x-amz-cf-id": "gw6BzhDceH95xjScQwQOafv-498Ibx4vW5pqkipIi2hvP_HiO9G1nw==",
+      "authorization": "eyJraWQiOiJcL0hFNkMwdnd6d28zM0pXOE1cL281M3hNNXhTRGVFU2Qzck9XUG9vZFRVZDA9IiwiYWxnIjoiUlMyNTYifQ.eyJzdWIiOiJkNGU4Zjc0ZC1mNzAwLTRlMGYtYjg1ZC1jOTQyYzcwYmEyZDYiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLnVzLWVhc3QtMS5hbWF6b25hd3MuY29tXC91cy1lYXN0LTFfYXVDRHNrZWU2IiwiY29nbml0bzp1c2VybmFtZSI6ImQ0ZThmNzRkLWY3MDAtNGUwZi1iODVkLWM5NDJjNzBiYTJkNiIsIm9yaWdpbl9qdGkiOiJkNWVmNDRjOS1kZDIwLTQ5YmYtYjA3NC1iNjgxYmQ2NjAwNzYiLCJhdWQiOiI1bmUyODloYXFnazlhOWs5MGMwYnZsdGY4NCIsImV2ZW50X2lkIjoiYTI1MWE2OTQtMTA3Zi00YmExLWIxNjgtM2NlYTZhZGRmNTNjIiwidG9rZW5fdXNlIjoiaWQiLCJhdXRoX3RpbWUiOjE3MTE2MTkyOTEsIm5hbWUiOiJ0ZXN0IHVzZXIgNSIsImV4cCI6MTcxMTYyMjg5MSwiaWF0IjoxNzExNjE5MjkxLCJmYW1pbHlfbmFtZSI6InRlc3QgdXNlciA1IiwianRpIjoiOGY5NDRiOGYtZWEzNC00ODMyLWFiOWYtZTZkZTZkMGQwMGZkIiwiZW1haWwiOiJtZWxrb24rMTIyMzMzQGVkY3NxdWFyZWQuaW8ifQ.k4JAsXzIVshRlb24deF80gSqs0TCdKskojCnn3g1nlRGbawMfuA6tO8r2LCW2nr8QeGcCD6C3HoJs1yO4kTP5WB0gdiE8yduxCfw_0flscMql3s0EMoi7F9mmbGPN4pxz1djtZlW1yi2o4utWw8dNI4mJzUCIo4oOsAOnQDu9BhotQTF_O727QFCtO4mf8GDTab4S_gBEgRlrIHt31A3nzXkTWgMrxFIX37GLvSTl6yvmYIOYaD-76C3kRbN89-Zyv1ns8eOZ4UsM8_RAGoG53tqKEmNNveMcPorCYcZD18Q3Irm-hjP7pc10Mn-F1iOrcMO-Gu7UXvUYDAiWW9Ybg",
+      "sec-fetch-dest": "empty",
+      "x-amz-user-agent": "aws-amplify/3.0.7",
+      "sec-ch-ua-platform": "\"macOS\"",
+      "cloudfront-is-desktop-viewer": "true",
+      "sec-fetch-site": "cross-site",
+      "sec-ch-ua": "\"Google Chrome\";v=\"123\", \"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"123\"",
+      "x-forwarded-port": "443"
+    },
+    "domainName": null
+  },
+  "info": {
+    "fieldName": "createUserProfile",
+    "parentTypeName": "Mutation",
+    "variables": {
+      "input": ["Object"]
+    }
+  },
+  "error": null,
+  "prev": null,
+  "stash": {},
+  "outErrors": []
+}

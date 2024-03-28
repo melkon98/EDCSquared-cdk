@@ -1,6 +1,7 @@
 import { Stack, StackProps } from "aws-cdk-lib";
 import { GraphqlApi, MappingTemplate } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
+import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
 import { USER_PROFILES_TABLE_NAME } from "./static/constants";
 export class UserProfileStack extends Stack {
@@ -41,17 +42,24 @@ export class UserProfileStack extends Stack {
       });
 
       // Mutations
+      const createUserProfileLambdaDataSource = gqlApi.addLambdaDataSource(
+        "CreateUserProfileLambdaDataSource",
+        Function.fromFunctionName(
+          this,
+          "createUserProfile",
+          "createUserProfile",
+        ),
+      );
 
-      userProfileDS.createResolver("createUserProfileResolver", {
-        typeName: "Mutation",
-        fieldName: "createUserProfile",
-        requestMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createUserProfile.req.vtl",
-        ),
-        responseMappingTemplate: MappingTemplate.fromFile(
-          "lib/amplify-export-edcsquared/api/edcsquared/amplify-appsync-files/resolvers/Mutation.createUserProfile.res.vtl",
-        ),
-      });
+      createUserProfileLambdaDataSource.createResolver(
+        "createUserProfileResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "createUserProfile",
+          requestMappingTemplate: MappingTemplate.lambdaRequest(),
+          responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
+        },
+      );
 
       userProfileDS.createResolver("updateUserProfileResolver", {
         typeName: "Mutation",
