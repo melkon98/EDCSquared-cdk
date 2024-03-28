@@ -1,0 +1,99 @@
+<html lang='en'>
+
+<head>
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <title>Email Template</title>
+</head>
+
+<body
+        style='margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, Helvetica, sans-serif;'
+>
+<div
+        style='color: black; background: #f5f1e8; margin: 0 auto; width: 100%; max-width: 600px; min-width: 200px;'
+>
+    <div style='color: black !important; font-size: 13px; font-weight: 400; padding: 40px;'>
+        <a href='https://app.edcsquared.io/login'>
+            <img style="height: 38px; width: 115px"
+                 src='https://user-storage185030-devstage.s3.amazonaws.com/public/emailAssets/edcsquared-logo.png'
+            />
+        </a>
+        <img
+                style='width: 100%'
+                src='https://user-storage185030-devstage.s3.amazonaws.com/public/emailAssets/image3.png'
+        />
+        <p style='margin: 20px 0'>
+            Hey
+            {{name}}!
+        </p>
+        <p>
+            Thanks for submitting content with creative id {{creativeUniqueId}} for
+            {{brandBriefName}}. Unfortunately on this occasion the client has not
+            approved your content, and they provided the following feedback…
+        </p>
+        <p style='margin: 20px 0'>
+            {{feedback}}
+        </p>
+        <p>
+            You can also visit the Best Practices section of the platform for more
+            tips and tricks on how to improve your content game 🙌.
+        </p>
+        <strong>Have an awesome day!</strong>
+        <footer
+                style='background: #202020; border-radius: 16px; margin-top: 80px; padding: 30px 23px; text-align: center;'
+        >
+            <div style='text-align: left; margin-bottom: 15px;'>
+                <div
+                        style='display: inline-block; vertical-align: top; width: 150px; margin-right: 20px; margin-bottom: 20px;'
+                >
+                    <a
+                            href='{{loginPageUrl}}'
+                            style='color: white; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: normal; display: block; margin-bottom: 10px;'
+                    >Login to your profile</a>
+                    <a
+                            href='{{websiteUrl}}'
+                            style='color: white; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: normal; display: block; margin-bottom: 10px;'
+                    >Visit our website</a>
+                    <a
+                            href='{{whatsappUrl}}'
+                            style='color: white; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: normal; display: block;'
+                    >Join our WhatsApp</a>
+                </div>
+                <table>
+                    <tr
+                            style='display: inline-block; vertical-align: top; width: 100px;'
+                    >
+                        <td>
+                            <a href='{{tiktokUrl}}'>
+                                <img
+                                        src='https://user-storage185030-devstage.s3.amazonaws.com/public/emailAssets/tiktok.png'
+                                />
+                            </a>
+                        </td>
+                        <td>
+                            <a href='{{linkedinUrl}}'>
+                                <img
+                                        style='margin: 0 10px'
+                                        src='https://user-storage185030-devstage.s3.amazonaws.com/public/emailAssets/linkedin.png'
+                                />
+                            </a>
+                        </td>
+                        <td>
+                            <a href='{{instagramUrl}}'>
+                                <img
+                                        src='https://user-storage185030-devstage.s3.amazonaws.com/public/emailAssets/instagram.png'
+                                />
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style='opacity: 0.6; color: #fff; text-align: left;'>
+                <p style='margin-bottom: 30px'>© 2024 Copyright EDC Squared. All
+                    Rights Reserved.</p>
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
+
+</html>

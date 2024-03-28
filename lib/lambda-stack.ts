@@ -18,6 +18,7 @@ import {
   BCC_EMAIL,
   BRAND_BRIEFS_BY_BRAND_ID_INDEX_NAME,
   BRAND_BRIEFS_TABLE_NAME,
+  BRAND_PROFILES_BY_BRAND_PROFILE_USER_ID,
   BRAND_PROFILE_TABLE_NAME,
   CREATIVE_REQUESTS_BY_BRAND_BRIEF_INDEX_NAME,
   CREATIVE_REQUESTS_EARNINGS_TABLE_NAME,
@@ -280,17 +281,14 @@ export class LambdaStack extends Stack {
       "creativeRequestStatusEmail",
       {
         code: Code.fromAsset(
-          path.join(
-            __dirname,
-            "amplify-export-edcsquared/function/creativeRequestsByCreator/amplify-builds/creativeRequestsByCreator-6d7932627361787a4644-build.zip",
-          ),
+          "lib/functions/creativeRequestStatusEmail/build/latest-build.zip",
         ),
         runtime: Runtime.NODEJS_LATEST,
-        handler: "index.handler",
+        handler: "src/index.handler",
         functionName: `creativeRequestStatusEmail`,
         environment: {
-          BCC_EMAIL: ENVS.BCC_EMAIL,
           ENV: ENVS.ENV,
+          BCC_EMAIL: ENVS.BCC_EMAIL,
           REGION: ENVS.REGION,
           INSTAGRAM_URL: ENVS.INSTAGRAM_URL,
           LOGIN_PAGE_URL: ENVS.LOGIN_PAGE_URL,
@@ -516,6 +514,7 @@ export class LambdaStack extends Stack {
         ),
       },
     );
+
     getCreativeRequests.addToRolePolicy(
       new PolicyStatement({
         effect: Effect.ALLOW,
@@ -1011,5 +1010,23 @@ export class LambdaStack extends Stack {
       ),
     });
     createUserProfile.addToRolePolicy(lambdaDynamodbDefaultPolicy);
+
+    const createBrandBrief = new lambda.Function(this, "createBrandBrief", {
+      timeout: Duration.seconds(LAMBDA_DEFAULT_TIMEOUT_IN_SECONDS),
+      code: Code.fromAsset(
+        "lib/functions/createBrandBrief/build/latest-build.zip",
+      ),
+      runtime: Runtime.NODEJS_20_X,
+      handler: "src/index.handler",
+      functionName: "createBrandBrief",
+      environment: {
+        ENV: ENVS.ENV,
+        REGION: ENVS.REGION,
+        BRAND_BRIEFS_TABLE_NAME,
+        BRAND_PROFILE_TABLE_NAME,
+        BRAND_PROFILES_BY_BRAND_PROFILE_USER_ID,
+      },
+    });
+    createBrandBrief.addToRolePolicy(lambdaDynamodbDefaultPolicy);
   }
 }

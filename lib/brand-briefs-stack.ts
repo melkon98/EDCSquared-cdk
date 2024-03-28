@@ -1,12 +1,5 @@
 import { Stack, StackProps } from "aws-cdk-lib";
-import {
-  Assign,
-  AttributeValues,
-  GraphqlApi,
-  MappingTemplate,
-  PrimaryKey,
-  Resolver,
-} from "aws-cdk-lib/aws-appsync";
+import { GraphqlApi, MappingTemplate, Resolver } from "aws-cdk-lib/aws-appsync";
 import { Table } from "aws-cdk-lib/aws-dynamodb";
 import { Function } from "aws-cdk-lib/aws-lambda";
 import { Construct } from "constructs";
@@ -158,19 +151,21 @@ export class BrandBriefsStack extends Stack {
         "manualData",
         "creativeRequestsCount",
       ];
-      brandBriefsDS.createResolver("CreateBrandBriefResolver", {
-        typeName: "Mutation",
-        fieldName: "createBrandBrief",
-        requestMappingTemplate: MappingTemplate.dynamoDbPutItem(
-          PrimaryKey.partition("id").auto(),
-          new AttributeValues("$ctx.args", [
-            ...fields.map((f) => new Assign(f, `$ctx.args.input.${f}`)),
-            new Assign("createdAt", "$util.time.nowISO8601()"),
-            new Assign("updatedAt", "$util.time.nowISO8601()"),
-          ]),
-        ),
-        responseMappingTemplate: MappingTemplate.dynamoDbResultItem(),
-      });
+
+      const createBrandBriefLambdaDataSource = gqlApi.addLambdaDataSource(
+        "CreateBrandBriefLambdaDataSource",
+        Function.fromFunctionName(this, "createBrandBrief", "createBrandBrief"),
+      );
+
+      createBrandBriefLambdaDataSource.createResolver(
+        "CreateBrandBriefResolver",
+        {
+          typeName: "Mutation",
+          fieldName: "createBrandBrief",
+          requestMappingTemplate: MappingTemplate.lambdaRequest(),
+          responseMappingTemplate: MappingTemplate.lambdaResult(),
+        },
+      );
 
       brandBriefsDS.createResolver("updateBrandBriefResolver", {
         typeName: "Mutation",
